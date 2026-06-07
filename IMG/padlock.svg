@@ -1,0 +1,59 @@
+<svg 
+  width="64" 
+  height="64" 
+  viewBox="0 0 64 64" 
+  fill="none" 
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <!-- 
+    Padlock Icon - Sharp/Rectangular Style
+    White outline only, no fill
+    Components: Shackle (top U-shape) + Lock body (bottom box)
+  -->
+
+  <!-- SHACKLE (top horizontal bar + two vertical legs) -->
+  <!-- Top horizontal bar of shackle -->
+  <rect 
+    x="20" 
+    y="8" 
+    width="24" 
+    height="6" 
+    stroke="white" 
+    stroke-width="3" 
+    fill="none"
+  />
+  
+  <!-- Left vertical leg of shackle -->
+  <rect 
+    x="20" 
+    y="8" 
+    width="6" 
+    height="20" 
+    stroke="white" 
+    stroke-width="3" 
+    fill="none"
+  />
+  
+  <!-- Right vertical leg of shackle -->
+  <rect 
+    x="38" 
+    y="8" 
+    width="6" 
+    height="20" 
+    stroke="white" 
+    stroke-width="3" 
+    fill="none"
+  />
+
+  <!-- LOCK BODY (main rectangular housing) -->
+  <rect 
+    x="16" 
+    y="28" 
+    width="32" 
+    height="28" 
+    stroke="white" 
+    stroke-width="3" 
+    fill="none"
+  />
+
+</svg>

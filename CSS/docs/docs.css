@@ -1,0 +1,18 @@
+.doc-tile{
+    background-color: #9c0049;
+    margin: 5px;
+}
+
+.doc-tile:hover{
+    background-color: #63002e;
+}
+
+.branding-bar{
+    font-size: 20px !important;
+    color: white;
+}
+
+text{
+    font-size: 20px;
+    color: #9c0049;
+}

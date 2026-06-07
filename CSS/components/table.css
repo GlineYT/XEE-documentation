@@ -1,0 +1,76 @@
+table{
+    background-color: #222;
+    width: 90% !important;
+    color: white;
+    margin-top: 20px;
+    margin-left: 100px;
+    padding: 10px;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+table code{
+    color: white;
+}
+
+table td,table th {
+    padding: 10px;
+    border: #333 solid 3px;
+}
+
+@media screen and (max-width:1350px) and (min-width:1000px){
+    table{
+        margin-left: 50px;
+    }
+}
+
+@media screen and (max-width:999px) {
+    table{
+    margin: 10px;
+    width: 100%;
+    padding: 5px;
+    }
+}
+
+@media screen and (max-width:920px){
+     .btn-custom,  .grade-button,  .grade-button-ag,  .grade-button-filter   {
+    /* Цвета се определя от друг CSS файл със отделен клас*/
+  color: white;
+  border: none;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.35s ease;
+  max-height: 32px;
+  min-height: 32px;
+  aspect-ratio: 1;
+    }
+
+
+table {
+    font-size: 12px !important;
+}
+
+td {
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+}
+
+@media screen and (max-width:650px){
+    
+table {
+    font-size: 10px !important;
+}
+
+td{
+    padding: -10px;
+}
+
+}   

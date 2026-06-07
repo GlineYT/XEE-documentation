@@ -1,0 +1,72 @@
+/** КОД ЗА SIDEBAR */
+/*! ПРЕДНАЗНАЧЕН ЗА ОБЩА УПОТРЕБА*/
+
+
+
+.offcanvas-title{
+  font-size: 1.5rem;
+}
+
+/* ===== LINKS ===== */
+.sidebar-overlay .nav-link {
+  color: #ddd;
+       transition: all 0.35s ease;
+
+}
+
+.sidebar{
+  background-color: #222;
+  color: #fff;
+  border-right: #333 solid 3px !important ;
+  --sidebar-width: 350px;
+}
+
+.nav-icon {
+    width:64px !important;
+    height: 64px;
+    object-fit: contain;
+    padding: 8px;
+     transition: all 0.35s ease;
+}
+
+.nav-icon:hover {
+       box-shadow: 0 0 0 3px rgba(240, 240, 240, 0.8);
+}
+
+a{
+  font-size: 25px; 
+  text-decoration: none;
+}
+
+/* ===== MOBILE FIX ===== */
+@media (max-width: 450px) {
+  .navbar-brand {
+    pointer-events: none;
+  }
+
+  .navbar .btn {
+    position: relative;
+    z-index: 1060;
+  }
+}
+
+
+/* Make the sidebar scrollable */
+.sidebar {
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+
+/* Optional: Style the scrollbar */
+.sidebar::-webkit-scrollbar {
+    width: 10px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: #9c0049;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: #63002e;
+}

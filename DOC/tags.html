@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>XMLang EE Documentation</title>
+    <link rel="stylesheet" href="https://cdn.metroui.org.ua/current/metro.css">
+    <link rel="stylesheet" href="../CSS/styles.css">
+    <link rel="stylesheet" href="../CSS/docs/get-started.css">
+        <link rel="stylesheet" href="../CSS/docs/tags.css">
+    <link rel="stylesheet" href="../CSS/docs/docs.css">
+    <link rel="stylesheet" href="../CSS/components/sidebar.css">
+        <link rel="stylesheet" href="../CSS/components/table.css">
+        <link rel="stylesheet" href="../CSS/components/note.css">
+    <link rel="stylesheet" href="../CSS/components/code.css">
+    <link rel="stylesheet" href="../CSS/components/colors.css">
+    <link rel="stylesheet" href="../CSS/components/footer.css">
+    <link rel="stylesheet" href="../CSS/components/header.css">
+    <script src="https://cdn.metroui.org.ua/current/metro.js"></script>
+    <link rel="stylesheet" href="https://cdn.metroui.org.ua/current/icons.css">
+    <script src="../JS/components.js"></script>
+    <script src="../JS/escaper.js"></script>
+</head>
+<body>
+
+<div id="header-placeholder"></div>
+
+
+<!-- This div gets filled with sidebar.html -->
+<div id="sidebar-placeholder"></div>
+
+<h1 class="mx-auto">XEE TAGS</h1>
+
+<div class="mx-auto">
+    <h2>XMLang extended edition uses XML tags for syntax. <br> This is very different from
+       other languages, such as python, java or C. <br>
+       The availible tags are:
+    </h2>
+</div>
+
+<table class="table">
+<tbody><tr>
+<th rowspan="2">Name
+</th>
+<th colspan="3">Requirements
+</th>
+<th rowspan="2">Description
+</th></tr>
+<tr>
+<th>ID
+</th>
+<th>Text
+</th>
+<th>Children
+</th></tr>
+<tr>
+<td><code>program</code>
+</td>
+<td style="background:#FF0000;color:#FFFFFF;font-size:125%;line-height:100%;vertical-align:middle;text-align:center;" class="table-terntrue">✗
+</td>
+<td style="background:#FF0000;color:#FFFFFF;font-size:125%;line-height:100%;vertical-align:middle;text-align:center;" class="table-terntrue">✗
+</td>
+<td style="background:#00B300;color:#FFFFFF;font-size:125%;line-height:100%;vertical-align:middle;text-align:center;" class="table-terntrue">✓
+</td>
+<td>The root node of the program. Should always be at the root, and have only one.
+</td></tr>
+<tr>
+<td><code>access</code>
+</td>
+<td style="background:#FFDD00;color:#FFF;font-size:125%;line-height:100%;vertical-align:middle;text-align:center;" class="table-terntrue">?
+</td>
+<td style="background:#FF0000;color:#FFFFFF;font-size:125%;line-height:100%;vertical-align:middle;text-align:center;" class="table-terntrue">✗
+</td>
+<td style="background:#FFDD00;color:#FFF;font-size:125%;line-height:100%;vertical-align:middle;text-align:center;" class="table-terntrue">?
+</td>
+<td>Access a variable or part of one. If given a variable id, it accesses that variable. If not, it accesses the first child.<br>If given another child, this is used to index into the value.<br>An error is raised if the value isn't indexable.
+</td></tr>
+<tr>
+<td><code>assign</code>
+</td>
+<td style="background:#00B300;color:#FFFFFF;font-size:125%;line-height:100%;vertical-align:middle;text-align:center;" class="table-terntrue">✓
+</td>
+<td style="background:#FF0000;color:#FFFFFF;font-size:125%;line-height:100%;vertical-align:middle;text-align:center;" class="table-terntrue">✗
+</td>
+<td style="background:#FFDD00;color:#FFF;font-size:125%;line-height:100%;vertical-align:middle;text-align:center;" class="table-terntrue">?
+</td>
+<td>Assign a variable. If this doesn't have children, the variable is initialized to <code>null</code>.<br>If this does have children, the inner value is evaluated and the variable is set to that,<br>again defaulting to <code>null</code> if it doesn't return a value.<br>Like access, if given another child, this is used to index into the value.<br>An error is raised if the value isn't indexable.<br>A dictionary is indexable by key.
+</td></tr>
+<tr>
+<td><code>block</code>
+</td>
+<td style="background:#FFDD00;color:#FFF;font-size:125%;line-height:100%;vertical-align:middle;text-align:center;" class="table-terntrue">?
+</td>
+<td style="background:#FF0000;color:#FFFFFF;font-size:125%;line-height:100%;vertical-align:middle;text-align:center;" class="table-terntrue">✗
+</td>
+<td style="background:#00B300;color:#FFFFFF;font-size:125%;line-height:100%;vertical-align:middle;text-align:center;" class="table-terntrue">✓
+</td>
+<td>Evaluates its children lazily, returning the first value returned from a child. An empty block (<code>&lt;block /&gt;</code>) is a no-op.
+</td></tr>
+<tr>
+<td><code>func</code>
+</td>
+<td style="background:#FFDD00;color:#FFF;font-size:125%;line-height:100%;vertical-align:middle;text-align:center;" class="table-terntrue">?
+</td>
+<td style="background:#FF0000;color:#FFFFFF;font-size:125%;line-height:100%;vertical-align:middle;text-align:center;" class="table-terntrue">✗
+</td>
+<td style="background:#FFF;color:#222;font-size:125%;line-height:100%;vertical-align:middle;text-align:center;" class="table-terntrue">2
+</td>
+<td>Requires an <code>args</code> and another child to create a function.<br>If given an ID, this is the same as <code>&lt;assign id="&lt;id&gt;"&gt;&lt;func&gt;</code>.<br>If not, creates a function type variable.<br>When called, the arguments are added to a duplicate of the current interpreter state and the inner block is evaluated.
+</td></tr>
+<tr>
+<td><code>pair</code>
+</td>
+<td style="background:#FF0000;color:#FFFFFF;font-size:125%;line-height:100%;vertical-align:middle;text-align:center;" class="table-terntrue">✗
+</td>
+<td style="background:#FF0000;color:#FFFFFF;font-size:125%;line-height:100%;vertical-align:middle;text-align:center;" class="table-terntrue">✗
+</td>
+<td style="background:#FFF;color:#222;font-size:125%;line-height:100%;vertical-align:middle;text-align:center;" class="table-terntrue">2
+</td>
+<td>Is only valid as a child of a <code>dict</code>. Denotes a key-value pair.
+</td></tr>
+<tr>
+<td><code>import</code>
+</td>
+<td style="background:#00B300;color:#FFFFFF;font-size:125%;line-height:100%;vertical-align:middle;text-align:center;" class="table-terntrue">✓
+</td>
+<td style="background:#FF0000;color:#FFFFFF;font-size:125%;line-height:100%;vertical-align:middle;text-align:center;" class="table-terntrue">✗
+</td>
+<td style="background:#FF0000;color:#FFFFFF;font-size:125%;line-height:100%;vertical-align:middle;text-align:center;" class="table-terntrue">✗
+</td>
+<td>Imports a file, or a built-in library if preceded with a <code>!</code>. Files are imported relative to the root of the program.<br>As there are no namespaces, all public variables are added to the scope with their respective name.
+</td></tr>
+<tr>
+<td><code>public</code>
+</td>
+<td style="background:#00B300;color:#FFFFFF;font-size:125%;line-height:100%;vertical-align:middle;text-align:center;" class="table-terntrue">✓
+</td>
+<td style="background:#FF0000;color:#FFFFFF;font-size:125%;line-height:100%;vertical-align:middle;text-align:center;" class="table-terntrue">✗
+</td>
+<td style="background:#FF0000;color:#FFFFFF;font-size:125%;line-height:100%;vertical-align:middle;text-align:center;" class="table-terntrue">✗
+</td>
+<td>Publicizes a variable, making it available if this file is imported from another file.
+</td></tr>
+<tr>
+<td><code>delete</code>
+</td>
+<td style="background:#00B300;color:#FFFFFF;font-size:125%;line-height:100%;vertical-align:middle;text-align:center;" class="table-terntrue">✓
+</td>
+<td style="background:#FF0000;color:#FFFFFF;font-size:125%;line-height:100%;vertical-align:middle;text-align:center;" class="table-terntrue">✗
+</td>
+<td style="background:#FF0000;color:#FFFFFF;font-size:125%;line-height:100%;vertical-align:middle;text-align:center;" class="table-terntrue">✗
+</td>
+<td>Deletes a variable. Raises an error if the variable is public.
+</td></tr>
+<tr>
+<td><code>return</code>
+</td>
+<td style="background:#FF0000;color:#FFFFFF;font-size:125%;line-height:100%;vertical-align:middle;text-align:center;" class="table-terntrue">✗
+</td>
+<td style="background:#FF0000;color:#FFFFFF;font-size:125%;line-height:100%;vertical-align:middle;text-align:center;" class="table-terntrue">✗
+</td>
+<td style="background:#FFF;color:#222;font-size:125%;line-height:100%;vertical-align:middle;text-align:center;" class="table-terntrue">1
+</td>
+<td>Explicitly returns a value. Never actually needed, but may make code slightly easier to understand.
+</td></tr>
+<td><code>try</code>
+</td>
+<td style="background:#FF0000;color:#FFFFFF;font-size:125%;line-height:100%;vertical-align:middle;text-align:center;" class="table-terntrue">✗
+</td>
+<td style="background:#FF0000;color:#FFFFFF;font-size:125%;line-height:100%;vertical-align:middle;text-align:center;" class="table-terntrue">✗
+</td>
+<td style="background:#FFF;color:#222;font-size:125%;line-height:100%;vertical-align:middle;text-align:center;" class="table-terntrue">2
+</td>
+<td>If the first child evaluates without error, its value is returned. Otherwise, the second child is evaluated and returned.
+</td></tr>
+<tr>
+<td><code>args</code>
+</td>
+<td style="background:#FF0000;color:#FFFFFF;font-size:125%;line-height:100%;vertical-align:middle;text-align:center;" class="table-terntrue">✗
+</td>
+<td style="background:#FF0000;color:#FFFFFF;font-size:125%;line-height:100%;vertical-align:middle;text-align:center;" class="table-terntrue">✗
+</td>
+<td style="background:#00B300;color:#FFFFFF;font-size:125%;line-height:100%;vertical-align:middle;text-align:center;" class="table-terntrue">✓
+</td>
+<td>All children must be of type <code>arg</code>. Is only valid as the first child of a <code>func</code>.
+</td></tr>
+<tr>
+<td><code>arg</code>
+</td>
+<td style="background:#00B300;color:#FFFFFF;font-size:125%;line-height:100%;vertical-align:middle;text-align:center;" class="table-terntrue">✓
+</td>
+<td style="background:#FF0000;color:#FFFFFF;font-size:125%;line-height:100%;vertical-align:middle;text-align:center;" class="table-terntrue">✗
+</td>
+<td style="background:#FF0000;color:#FFFFFF;font-size:125%;line-height:100%;vertical-align:middle;text-align:center;" class="table-terntrue">✗
+</td>
+<td>Denotes an argument for a function. Is only valid as a child of an <code>args</code>.
+</td></tr>
+<tr>
+<td><code>call</code>
+</td>
+<td style="background:#FFDD00;color:#FFF;font-size:125%;line-height:100%;vertical-align:middle;text-align:center;" class="table-terntrue">?
+</td>
+<td style="background:#FF0000;color:#FFFFFF;font-size:125%;line-height:100%;vertical-align:middle;text-align:center;" class="table-terntrue">✗
+</td>
+<td style="background:#FFDD00;color:#FFF;font-size:125%;line-height:100%;vertical-align:middle;text-align:center;" class="table-terntrue">?
+</td>
+<td>Calls the variable with the passed ID, or if not given one, the first child. Any other children are passed as arguments.<br>Raises an error if it's not a function.
+</td></tr>
+<tr>
+<td><code>if</code>
+</td>
+<td style="background:#FF0000;color:#FFFFFF;font-size:125%;line-height:100%;vertical-align:middle;text-align:center;" class="table-terntrue">✗
+</td>
+<td style="background:#FF0000;color:#FFFFFF;font-size:125%;line-height:100%;vertical-align:middle;text-align:center;" class="table-terntrue">✗
+</td>
+<td style="background:#00B300;color:#FFFFFF;font-size:125%;line-height:100%;vertical-align:middle;text-align:center;" class="table-terntrue">✓
+</td>
+<td>For every 2 children, calls the second and returns if the first one evaluates to a <code>true</code>.<br>If there's an odd number of children, the last one is called if none of the above ones are.
+</td></tr>
+<tr>
+<td><code>for</code>
+</td>
+<td style="background:#00B300;color:#FFFFFF;font-size:125%;line-height:100%;vertical-align:middle;text-align:center;" class="table-terntrue">✓
+</td>
+<td style="background:#FF0000;color:#FFFFFF;font-size:125%;line-height:100%;vertical-align:middle;text-align:center;" class="table-terntrue">✗
+</td>
+<td style="background:#FFF;color:#222;font-size:125%;line-height:100%;vertical-align:middle;text-align:center;" class="table-terntrue">2
+</td>
+<td>Iterates through an indexable object. If given an integer, it iterates from 0 to that number.<br>A variable with the set ID is set for each iteration, and is <b>not</b> deleted when the loop concludes.
+</td></tr>
+<tr>
+<td><code>while</code>
+</td>
+<td style="background:#00B300;color:#FFFFFF;font-size:125%;line-height:100%;vertical-align:middle;text-align:center;" class="table-terntrue">✓
+</td>
+<td style="background:#FF0000;color:#FFFFFF;font-size:125%;line-height:100%;vertical-align:middle;text-align:center;" class="table-terntrue">✗
+</td>
+<td style="background:#FFF;color:#222;font-size:125%;line-height:100%;vertical-align:middle;text-align:center;" class="table-terntrue">2
+</td>
+<td>Keeps looping the second child until the first child returns <code>false</code>.
+</td></tr>
+<tr>
+<td><a href="#Types"><code>type</code></a>
+</td>
+<td style="background:#FF0000;color:#FFFFFF;font-size:125%;line-height:100%;vertical-align:middle;text-align:center;" class="table-terntrue">✗
+</td>
+<td style="background:#00B300;color:#FFFFFF;font-size:125%;line-height:100%;vertical-align:middle;text-align:center;" class="table-terntrue">✓
+</td>
+<td style="background:#FFDD00;color:#FFF;font-size:125%;line-height:100%;vertical-align:middle;text-align:center;" class="table-terntrue">?
+</td>
+<td>Casts the child to the given type if it has one (except for arr/set/dict/func, as these already have children for their definition),<br> or if it has no children, creates a literal value from its text.
+</td></tr></tbody>          
+</table>
+
+    <div class="note mx-auto">
+        <h1>
+            NOTE: BINARY AND UNARY OPERATORS ARE NOT LISTED
+        </h1>
+        <p>
+            Please note that, while the binary and unary operators are tags, they are listed in the "unary operators" and "binary operators" category.
+        </p>
+    </div>
+
+
+    
+
+</div>
+<div id="footer-placeholder"></div>
+
+</body>
+</html>

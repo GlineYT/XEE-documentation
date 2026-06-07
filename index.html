@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>XMLang EE Documentation</title>
+    <link rel="stylesheet" href="https://cdn.metroui.org.ua/current/metro.css">
+    <link rel="stylesheet" href="../CSS/styles.css">
+    <link rel="stylesheet" href="../CSS/docs/get-started.css">
+    <link rel="stylesheet" href="../CSS/docs/docs.css">
+    <link rel="stylesheet" href="../CSS/components/sidebar.css">
+    <link rel="stylesheet" href="../CSS/components/code.css">
+    <link rel="stylesheet" href="../CSS/components/colors.css">
+    <link rel="stylesheet" href="../CSS/components/header.css">
+    <script src="https://cdn.metroui.org.ua/current/metro.js"></script>
+    <link rel="stylesheet" href="https://cdn.metroui.org.ua/current/icons.css">
+    <script src="../JS/components.js"></script>
+    <script src="../JS/escaper.js"></script>
+</head>
+<body>
+
+<div id="header-placeholder"></div>
+
+
+<!-- This div gets filled with sidebar.html -->
+<div data-role="sidebar" data-toggle="#sidebar-toggle" class="sidebar">
+     <li class="nav-item p-3">
+  <a class="nav-link" href="./absent.html">
+    <img src="./IMG/home-svgrepo-com.svg" class="nav-icon red">
+    <span>Main page</span>
+  </a>
+</li>
+
+<li class="nav-item p-3">
+  <a class="nav-link" href="./DOC/main.html">
+    <img src="./IMG/student-svgrepo-com.png" class="nav-icon blue">
+    <span>Docs</span>
+  </a>
+</li>
+
+
+<li class="nav-item p-3">
+  <a class="nav-link" href="./DOC/main.html">
+    <img src="./IMG/github-01-svgrepo-com.svg" class="nav-icon black">
+    <span>Github</span>
+  </a>
+</li>
+
+
+<li class="nav-item p-3">
+  <a class="nav-link" href="./absent.html">
+    <img src="./IMG/discord-icon-svgrepo-com.svg" class="nav-icon indigo">
+    <span>Discord</span>
+  </a>
+</li>
+
+</div>
+
+<h1 class="mx-auto">HOW TO GET STARTED</h1>
+<div class="d-flex get-started mx-auto">
+
+    <div data-role="tile" class="doc-tile" data-size="large" onclick="window.location.href='https://github.com/GlineYT/XMLang-Extended-Edition/releases/tag/Release'; ">
+        <img src="../IMG/download-svgrepo-com.svg" class="icon" >
+        <span class="branding-bar">Download the interpreter</span>
+    </div>
+
+    <div data-role="tile" class="doc-tile" data-size="large">
+        <img src="../IMG/xml-svgrepo-com.svg" class="icon" >
+        <span class="branding-bar">Create a new .xee file</span>
+    </div>
+
+    <div data-role="tile" class="doc-tile" data-size="large">
+        <img src="../IMG/gear.png" class="icon" >
+        <span class="branding-bar">Run it</span>
+    </div>
+</div>
+
+
+<h2 class="mx-auto">
+    The below program will print "HELLO WORLD" to the terminal
+</h2>
+
+<div class="code mx-auto">
+Example of a classic "HELLO WORLD" program
+
+<program> <!-- Every program must be inside a <program> tag -->
+    &lt;import id="!std"/&gt; <!-- println belongs to the standart library -->
+    <call id="println"> <!--The call tag calls a function, the id specifies which -->
+        <str>Hello world</str> <!--<str> tag, thus a string will be printed -->
+    </call>
+
+</program>
+
+    
+
+</div>
+
+</body>
+</html>

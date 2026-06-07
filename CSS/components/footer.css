@@ -1,0 +1,20 @@
+.footer{
+    background-color: #222;
+    border-top  : 3px solid #333;
+    width: 100vw;
+    margin-top: 50px;
+    text-align: center;
+}
+
+.footer h1{
+    margin-top: 15px;
+}
+.footer a, .footer small{
+    color: #9c0049 !important;
+    font-family: "Century Gothic Paneuropean" !important;
+    text-decoration: none !important;
+}
+
+a:hover{
+    color: #63002e !important;
+}

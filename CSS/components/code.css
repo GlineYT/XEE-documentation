@@ -1,0 +1,11 @@
+.code, .code pre{
+    background-color: #222;
+    border: #333 2px solid;
+    font-family: monospace;
+    color: white;
+}
+
+.code{
+    margin: 20px;
+}
+

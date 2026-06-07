@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>XMLang EE Documentation</title>
+    <link rel="stylesheet" href="https://cdn.metroui.org.ua/current/metro.css">
+    <link rel="stylesheet" href="../CSS/styles.css">
+    <link rel="stylesheet" href="../CSS/docs/get-started.css">
+        <link rel="stylesheet" href="../CSS/docs/tags.css">
+    <link rel="stylesheet" href="../CSS/docs/docs.css">
+    <link rel="stylesheet" href="../CSS/components/sidebar.css">
+    <link rel="stylesheet" href="../CSS/components/note.css">
+    <link rel="stylesheet" href="../CSS/components/code.css">
+    <link rel="stylesheet" href="../CSS/components/colors.css">
+    <link rel="stylesheet" href="../CSS/components/footer.css">
+    <link rel="stylesheet" href="../CSS/components/header.css">
+    <script src="https://cdn.metroui.org.ua/current/metro.js"></script>
+    <link rel="stylesheet" href="https://cdn.metroui.org.ua/current/icons.css">
+    <script src="../JS/components.js"></script>
+    <script src="../JS/escaper.js"></script>
+</head>
+<body>
+
+
+<div id="header-placeholder"></div>
+
+<!-- This div gets filled with sidebar.html -->
+<div id="sidebar-placeholder"></div>
+
+<h1 class="mx-auto">ID'S IN XEE</h1>
+
+<div class="mx-auto">
+    <h2>XMLang extended edition uses XML tags for syntax, thus, id's are also a part of the syntax
+    </h2>
+
+    <text>
+        ID's in XEE serve primarily for identification of variables,functions or libraries<br>
+        for example:
+    </text>
+
+    <div class="code">
+
+<program>
+    &lt;import id="!std"/&gt; <!-- Here, the id is used to identify the library to be imported.-->
+
+    <assign id="a"> <!-- Here, the id is used to set the name of the variable -->
+        <str>Hello world</str>
+    </assign>
+        
+    <call id="println">  <!-- Here, the id is used to name the function to be called -->
+        &lt;access id="a"/&gt; <!-- Here, the id is used to name the variable to be accessed -->
+    </call>
+</program>
+    </div>
+
+<text>
+    To better illustrate how each id is used, let's do a line-by-line analysis<br>
+    and compare with python.
+    <br>
+    After the opening program tag, the second line is the "import" tag
+</text>
+
+<div class="code">
+&lt;import id="!std"/&gt;
+</div>
+
+<text>
+   When importing a library with the relevant tag, the id property is being used to identify which library is imported<br>
+   The equivalent syntax in python would be:
+</text>
+
+<div class="code">
+import library
+</div>
+
+<text>
+    In this case the equivalent to the "import" statement is the tag, while the argument after it is the id
+
+    <br>
+
+    The second part is the variable assignment:
+</text>
+
+<div class="code">
+    <assign id="a">
+        <str>Hello world</str>
+    </assign>
+</div>
+
+<text>
+    The assign keyword serves to specify the name "id" and type. <br>
+    The ID is the name of the variable, and the "str" tag inside specifies the type.<br>
+    XEE is strongly typed, thus variable declaration and assignment behaves like C/C++. <br>
+    Due to the strongly typed nature of XEE, a comparison to java would be more appropirate
+</text>
+
+
+<div class="code">
+String name = "John";
+</div>
+
+
+<text>
+    The assign tag functions similarly to the equal <br>
+    And the id property would be equivalent to the "name" after the "String" declaration <br>
+    The "Hello world" inside the str tag serves as the value. Since XEE is strongly typed, type must be declared <br>
+    The next part is the function call
+</text>
+
+<div class="code">
+<call id="println">  
+    &lt;access id="a"/&gt; 
+</call>
+</div>
+
+<text>
+    The call tag calls the function named in the id property <br> 
+    Inside the function,as a child the variable is passed. See the "functions" section of the documentation <br>
+    Because variables can't be directly accessed, but must be accessed with the access tag, <br> the variable to acess is named using the id property. The id must be exactly the name of the variable as it was assigned<br>
+    The Python equivalent would be:
+</text>
+
+
+<div class="code">
+print(a)
+</div>
+
+<text>
+    In python, functions are called like keywords, and the arguments are in parentheses <br>
+    while the variable to be accessed is directly entered
+</text>
+</div>
+<div id="footer-placeholder"></div>
+
+</body>
+</html>

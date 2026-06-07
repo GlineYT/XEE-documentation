@@ -1,0 +1,47 @@
+
+.yellow {
+    background-color: #FFDD00 !important;
+}
+
+.green {
+    background-color: #00B300 !important;
+}
+
+.red {
+    background-color: #FF0000 !important;
+}
+.orange {
+    background-color: #FF7F00 !important;
+}
+
+.blue {
+    background-color: #024EA4 !important;
+}
+
+.lightblue{
+    background-color: #2879ED !important;
+}
+
+.lightgreen{
+    background-color: #FFFFFF !important;
+}
+
+.indigo{
+    background-color: #6500A8 !important;
+}
+
+.gray{
+    background-color: #646464;
+}
+
+.black{
+    background-color: #000;
+}
+
+.mediumgrey{
+    background-color: #444;
+}
+
+.darkgrey{
+    background-color: #222;
+}

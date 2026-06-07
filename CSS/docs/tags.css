@@ -1,0 +1,9 @@
+#tag-example-grid{
+    display: grid;
+      grid-template-columns: auto auto;
+}
+
+#tag-example-grid .code{
+    aspect-ratio: 1;
+    width: 400px;
+}

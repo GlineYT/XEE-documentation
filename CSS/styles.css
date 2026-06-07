@@ -1,0 +1,32 @@
+body {
+    background-color: #121111;
+  background-image: url('../IMG/background\ pattern.png');
+  background-repeat: repeat;
+   background-size: 200px 200px;
+}
+
+h1,h2,h3,h4,h5,h6,p,a,li{
+    color: #9c0049;
+    font-family: "Century Gothic Paneuropean";
+    text-decoration: none !important;
+}
+
+a:hover{
+    color: #63002e;
+}
+
+
+
+#main-heading{
+    margin-top: 11.5px !important;
+}
+
+#main-heading:hover{
+    background-color: #00000000;        
+}
+
+#sidebar-toggle{
+    background-color: #222;
+    border: none;
+    color: #9c0049;
+}
