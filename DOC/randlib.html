@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>XMLang EE Documentation - Random Library</title>
+    <link rel="stylesheet" href="https://cdn.metroui.org.ua/current/metro.css">
+    <link rel="stylesheet" href="../CSS/styles.css">
+    <link rel="stylesheet" href="../CSS/docs/get-started.css">
+    <link rel="stylesheet" href="../CSS/docs/tags.css">
+    <link rel="stylesheet" href="../CSS/docs/docs.css">
+    <link rel="stylesheet" href="../CSS/components/sidebar.css">
+    <link rel="stylesheet" href="../CSS/components/note.css">
+    <link rel="stylesheet" href="../CSS/components/code.css">
+    <link rel="stylesheet" href="../CSS/components/colors.css">
+    <link rel="stylesheet" href="../CSS/components/footer.css">
+    <link rel="stylesheet" href="../CSS/components/header.css">
+    <link rel="stylesheet" href="../CSS/components/table.css">
+    <script src="https://cdn.metroui.org.ua/current/metro.js"></script>
+    <link rel="stylesheet" href="https://cdn.metroui.org.ua/current/icons.css">
+    <script src="../JS/components.js"></script>
+    <script src="../JS/escaper.js"></script>
+</head>
+<body>
+
+<div id="header-placeholder"></div>
+<div id="sidebar-placeholder"></div>
+
+<h1 class="mx-auto">RANDOM LIBRARY</h1>
+
+<div class="mx-auto">
+    <text>
+        The Random library provides functions for generating random numbers,strings and arrays <br>.
+        To use it, import <code>!rand</code> in your program.
+    </text>
+
+    <div class="code">
+&lt;import id="!rand"/&gt;
+    </div>
+
+    <h2>Function Reference</h2>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Name</th>
+                <th>Arguments</th>
+                <th>Returns</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td><code>rand</code></td>
+                <td>None</td>
+                <td>Float</td>
+                <td>Returns a random floating-point number between 0 and 1.</td>
+            </tr>
+            <tr>
+                <td><code>guid</code></td>
+                <td>None</td>
+                <td>String</td>
+                <td>Generates a random UUID (version 4).</td>
+            </tr>
+            <tr>
+                <td><code>rand_str</code></td>
+                <td><code>length, base</code></td>
+                <td>String</td>
+                <td>Generates a random string of specified length <br> Uses characters from the given base (2-36).</td>
+            </tr>
+            <tr>
+                <td><code>shuffle</code></td>
+                <td><code>array</code></td>
+                <td>Array</td>
+                <td>Returns a new array with the elements randomly shuffled.</td>
+            </tr>
+            <tr>
+                <td><code>choice</code></td>
+                <td><code>array</code></td>
+                <td>Any</td>
+                <td>Returns a random element from the array.</td>
+            </tr>
+            <tr>
+                <td><code>sample</code></td>
+                <td><code>count</code></td>
+                <td>Array</td>
+                <td>Returns an array of random floats with the specified count.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>rand</h2>
+    <text>Returns a random floating-point number between 0.0 and 1.0.</text>
+
+    <div class="code">
+&lt;assign id="random_num"&gt;
+    &lt;call id="rand"/&gt;
+&lt;/assign&gt;
+
+&lt;call id="println"&gt;
+    &lt;add&gt;
+        &lt;str&gt;Random number: &lt;/str&gt;
+        &lt;access id="random_num"/&gt;
+    &lt;/add&gt;
+&lt;/call&gt;
+    </div>
+
+    <h2>guid</h2>
+    <text>Generates a random UUID (version 4) string. Useful for unique identifiers.</text>
+
+    <div class="code">
+&lt;assign id="user_id"&gt;
+    &lt;call id="guid"/&gt;
+&lt;/assign&gt;
+
+&lt;call id="println"&gt;
+    &lt;add&gt;
+        &lt;str&gt;User ID: &lt;/str&gt;
+        &lt;access id="user_id"/&gt;
+    &lt;/add&gt;
+&lt;/call&gt;
+    </div>
+
+    <h2>rand_str</h2>
+    <text>Generates a random string of the specified length using characters from the given base.</text>
+
+    <div class="note">
+        <strong>Base ranges:</strong>
+        <ul>
+            <li>Base 2 → binary (0-1)</li>
+            <li>Base 10 → decimal (0-9)</li>
+            <li>Base 16 → hexadecimal (0-9, a-f)</li>
+            <li>Base 36 → alphanumeric (0-9, a-z)</li>
+        </ul>
+    </div>
+
+    <div class="code">
+&lt;!-- Binary string (8 bits) --&gt;
+&lt;assign id="binary"&gt;
+    &lt;call id="rand_str"&gt;
+        &lt;int&gt;8&lt;/int&gt;
+        &lt;int&gt;2&lt;/int&gt;
+    &lt;/call&gt;
+&lt;/assign&gt;
+
+&lt;!-- Hexadecimal string (16 chars) --&gt;
+&lt;assign id="hex"&gt;
+    &lt;call id="rand_str"&gt;
+        &lt;int&gt;16&lt;/int&gt;
+        &lt;int&gt;16&lt;/int&gt;
+    &lt;/call&gt;
+&lt;/assign&gt;
+
+&lt;!-- Alphanumeric string (12 chars) --&gt;
+&lt;assign id="alnum"&gt;
+    &lt;call id="rand_str"&gt;
+        &lt;int&gt;12&lt;/int&gt;
+        &lt;int&gt;36&lt;/int&gt;
+    &lt;/call&gt;
+&lt;/assign&gt;
+
+&lt;call id="println"&gt;
+    &lt;add&gt;
+        &lt;add&gt;
+            &lt;add&gt;
+                &lt;str&gt;Binary: &lt;/str&gt;
+                &lt;access id="binary"/&gt;
+            &lt;/add&gt;
+            &lt;str&gt;\nHex: &lt;/str&gt;
+        &lt;/add&gt;
+        &lt;access id="hex"/&gt;
+    &lt;/add&gt;
+&lt;/call&gt;
+    </div>
+
+    <h2>shuffle</h2>
+    <text>Returns a new array with the elements randomly shuffled.<br> The original array is unchanged.</text>
+
+    <div class="code">
+&lt;assign id="original"&gt;
+    &lt;arr&gt;
+        &lt;str&gt;apple&lt;/str&gt;
+        &lt;str&gt;banana&lt;/str&gt;
+        &lt;str&gt;cherry&lt;/str&gt;
+        &lt;str&gt;date&lt;/str&gt;
+    &lt;/arr&gt;
+&lt;/assign&gt;
+
+&lt;assign id="shuffled"&gt;
+    &lt;call id="shuffle"&gt;
+        &lt;access id="original"/&gt;
+    &lt;/call&gt;
+&lt;/assign&gt;
+
+&lt;call id="println"&gt;
+    &lt;add&gt;
+        &lt;str&gt;Shuffled: &lt;/str&gt;
+        &lt;access id="shuffled"/&gt;
+    &lt;/add&gt;
+&lt;/call&gt;
+    </div>
+
+    <h2>choice</h2>
+    <text>Returns a random element from the array.</text>
+
+    <div class="code">
+&lt;assign id="fruits"&gt;
+    &lt;arr&gt;
+        &lt;str&gt;apple&lt;/str&gt;
+        &lt;str&gt;banana&lt;/str&gt;
+        &lt;str&gt;cherry&lt;/str&gt;
+    &lt;/arr&gt;
+&lt;/assign&gt;
+
+&lt;assign id="random_fruit"&gt;
+    &lt;call id="choice"&gt;
+        &lt;access id="fruits"/&gt;
+    &lt;/call&gt;
+&lt;/assign&gt;
+
+&lt;call id="println"&gt;
+    &lt;add&gt;
+        &lt;str&gt;Random fruit: &lt;/str&gt;
+        &lt;access id="random_fruit"/&gt;
+    &lt;/add&gt;
+&lt;/call&gt;
+    </div>
+
+    <h2>sample</h2>
+    <text>Returns an array containing the specified number of random floats between 0 and 1.</text>
+
+    <div class="code">
+&lt;assign id="samples"&gt;
+    &lt;call id="sample"&gt;
+        &lt;int&gt;5&lt;/int&gt;
+    &lt;/call&gt;
+&lt;/assign&gt;
+
+&lt;call id="println"&gt;
+    &lt;add&gt;
+        &lt;str&gt;5 random floats: &lt;/str&gt;
+        &lt;access id="samples"/&gt;
+    &lt;/add&gt;
+&lt;/call&gt;
+    </div>
+
+    <div class="note">
+        <strong>Note:</strong> The random number generator is cryptographically secure where available.<br>
+        For cryptographic purposes, consider using the Crypto library instead.
+    </div>
+
+</div>
+
+<div id="footer-placeholder"></div>
+
+</body>
+</html>

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>XMLang EE Documentation - I/O Library</title>
+    <link rel="stylesheet" href="https://cdn.metroui.org.ua/current/metro.css">
+    <link rel="stylesheet" href="../CSS/styles.css">
+    <link rel="stylesheet" href="../CSS/docs/get-started.css">
+    <link rel="stylesheet" href="../CSS/docs/tags.css">
+    <link rel="stylesheet" href="../CSS/docs/docs.css">
+    <link rel="stylesheet" href="../CSS/components/sidebar.css">
+    <link rel="stylesheet" href="../CSS/components/note.css">
+    <link rel="stylesheet" href="../CSS/components/code.css">
+    <link rel="stylesheet" href="../CSS/components/colors.css">
+    <link rel="stylesheet" href="../CSS/components/footer.css">
+    <link rel="stylesheet" href="../CSS/components/header.css">
+    <link rel="stylesheet" href="../CSS/components/table.css">
+    <script src="https://cdn.metroui.org.ua/current/metro.js"></script>
+    <link rel="stylesheet" href="https://cdn.metroui.org.ua/current/icons.css">
+    <script src="../JS/components.js"></script>
+    <script src="../JS/escaper.js"></script>
+</head>
+<body>
+
+<div id="header-placeholder"></div>
+<div id="sidebar-placeholder"></div>
+
+<h1 class="mx-auto">I/O LIBRARY</h1>
+
+<div class="mx-auto">
+    <text>
+        The I/O library provides file system operations including: <ul><li> reading</li><li> writing</li><li> appending</li><li>existence checking</li></ul> 
+        To use it, import <code>!io</code> in your program.
+    </text>
+
+    <div class="code">
+&lt;import id="!io"/&gt;
+    </div>
+
+    <h2>Function Reference</h2>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Name</th>
+                <th>Arguments</th>
+                <th>Returns</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td><code>read</code></td>
+                <td><code>path</code></td>
+                <td>String</td>
+                <td>Reads entire file as string. Errors if file not found.</td>
+            </tr>
+            <tr>
+                <td><code>read-bin</code></td>
+                <td><code>path</code></td>
+                <td>Array of integers</td>
+                <td>Reads file as bytes. Each byte becomes an integer (0-255).</td>
+            </tr>
+            <tr>
+                <td><code>write</code></td>
+                <td><code>path, data</code></td>
+                <td>None</td>
+                <td>Writes string to file (overwrites if exists, creates if not).</td>
+            </tr>
+            <tr>
+                <td><code>write-bin</code></td>
+                <td><code>path, array</code></td>
+                <td>None</td>
+                <td>Writes byte array to file (overwrites if exists).</td>
+            </tr>
+            <tr>
+                <td><code>append</code></td>
+                <td><code>path, data</code></td>
+                <td>None</td>
+                <td>Appends string to end of file. Creates file if not exists.</td>
+            </tr>
+            <tr>
+                <td><code>write_new</code></td>
+                <td><code>path, data</code></td>
+                <td>None</td>
+                <td>Creates new file and writes data. Errors if file already exists.</td>
+            </tr>
+            <tr>
+                <td><code>exists</code></td>
+                <td><code>path</code></td>
+                <td>Boolean</td>
+                <td>Returns true if file exists, false otherwise.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>read</h2>
+    <text>Reads the entire contents of a file as a string.</text>
+
+    <div class="code">
+&lt;assign id="content"&gt;
+    &lt;call id="read"&gt;
+        &lt;str&gt;data.txt&lt;/str&gt;
+    &lt;/call&gt;
+&lt;/assign&gt;
+
+&lt;call id="println"&gt;
+    &lt;add&gt;
+        &lt;str&gt;File content: &lt;/str&gt;
+        &lt;access id="content"/&gt;
+    &lt;/add&gt;
+&lt;/call&gt;
+    </div>
+
+    <h2>read-bin</h2>
+    <text>Reads a file as binary data, returning an array of integers (0-255).</text>
+
+    <div class="code">
+<assign id="bytes"> 
+    <call id="read-bin">
+        <str>./image.png</str>
+    </call>
+</assign>
+
+<call id="println">
+    <add>
+        <str>File size: </str>
+        <str><call id="len"><access id="bytes"/></call></str>
+    </add>
+</call>
+    </div>
+
+    <h2>write</h2>
+    <text>Writes a string to a file. Overwrites existing content. <br>Creates parent directories automatically.</text>
+
+    <div class="code">
+&lt;call id="write"&gt;
+    &lt;str&gt;output.txt&lt;/str&gt;
+    &lt;str&gt;Hello, World!&lt;/str&gt;
+&lt;/call&gt;
+    </div>
+
+    <h2>write-bin</h2>
+    <text>Writes an array of integers as binary data to a file.</text>
+
+    <div class="code">
+&lt;assign id="data"&gt;
+    &lt;arr&gt;
+        &lt;int&gt;72&lt;/int&gt;
+        &lt;int&gt;101&lt;/int&gt;
+        &lt;int&gt;108&lt;/int&gt;
+        &lt;int&gt;108&lt;/int&gt;
+        &lt;int&gt;111&lt;/int&gt;
+    &lt;/arr&gt;
+&lt;/assign&gt;
+
+&lt;call id="write-bin"&gt;
+    &lt;str&gt;hello.bin&lt;/str&gt;
+    &lt;access id="data"/&gt;
+&lt;/call&gt;
+    </div>
+
+    <h2>append</h2>
+    <text>Appends data to the end of a file. Creates the file if it doesn't exist.</text>
+
+    <div class="code">
+&lt;call id="append"&gt;
+    &lt;str&gt;log.txt&lt;/str&gt;
+    &lt;str&gt;[INFO] Application started\n&lt;/str&gt;
+&lt;/call&gt;
+
+&lt;call id="append"&gt;
+    &lt;str&gt;log.txt&lt;/str&gt;
+    &lt;str&gt;[INFO] User logged in\n&lt;/str&gt;
+&lt;/call&gt;
+    </div>
+
+    <h2>write_new</h2>
+    <text>
+        Creates a new file and writes data. Fails if the file already exists.<br>
+        Similar to Python's <code>'x'</code> file mode.
+    </text>
+
+    <div class="code">
+&lt;!-- This succeeds if config.xee doesn't exist --&gt;
+&lt;call id="write_new"&gt;
+    &lt;str&gt;config.xee&lt;/str&gt;
+    &lt;str&gt;&lt;assign id="setting"&gt;&lt;str&gt;value&lt;/str&gt;&lt;/assign&gt;&lt;/str&gt;
+&lt;/call&gt;
+
+&lt;!-- This fails with "File exists" error --&gt;
+&lt;call id="write_new"&gt;
+    &lt;str&gt;config.xee&lt;/str&gt;
+    &lt;str&gt;new content&lt;/str&gt;
+&lt;/call&gt;
+    </div>
+
+    <h2>exists</h2>
+    <text>Checks whether a file exists before attempting to read it.</text>
+
+    <div class="code">
+&lt;if&gt;
+    &lt;call id="exists"&gt;&lt;str&gt;data.csv&lt;/str&gt;&lt;/call&gt;
+    &lt;block&gt;
+        &lt;assign id="content"&gt;
+            &lt;call id="read"&gt;&lt;str&gt;data.csv&lt;/str&gt;&lt;/call&gt;
+        &lt;/assign&gt;
+        &lt;call id="println"&gt;&lt;access id="content"/&gt;&lt;/call&gt;
+    &lt;/block&gt;
+    &lt;block&gt;
+        &lt;call id="println"&gt;&lt;str&gt;File not found&lt;/str&gt;&lt;/call&gt;
+    &lt;/block&gt;
+&lt;/if&gt;
+    </div>
+
+    <h2>Path Resolution</h2>
+    <text>
+        All paths are resolved relative to the <strong>current working directory</strong> <br>
+        This is where the interpreter is executed,not relative to the script's location.
+    </text>
+
+    <div class="note">
+        <strong>Tip:</strong> To use paths relative to your script <code>cd</code> into the script's directory first.<br> Alternative, use relative paths
+        <br/><br/>
+        Example:
+        <div class="code">
+cd /path/to/your/script
+xmlang-ee script.xee
+        </div>
+    </div>
+
+    <div class="note note-warning">
+        <strong>Warning:</strong> Always check if a file exists before reading it.<br>
+        The <code>read</code> function will crash if the file doesn't exist.
+    </div>
+
+</div>
+
+<div id="footer-placeholder"></div>
+
+</body>
+</html>

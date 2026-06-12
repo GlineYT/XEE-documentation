@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>XMLang EE Documentation - Math Library</title>
+    <link rel="stylesheet" href="https://cdn.metroui.org.ua/current/metro.css">
+    <link rel="stylesheet" href="../CSS/styles.css">
+    <link rel="stylesheet" href="../CSS/docs/get-started.css">
+    <link rel="stylesheet" href="../CSS/docs/tags.css">
+    <link rel="stylesheet" href="../CSS/docs/docs.css">
+    <link rel="stylesheet" href="../CSS/components/sidebar.css">
+    <link rel="stylesheet" href="../CSS/components/note.css">
+    <link rel="stylesheet" href="../CSS/components/code.css">
+    <link rel="stylesheet" href="../CSS/components/colors.css">
+    <link rel="stylesheet" href="../CSS/components/footer.css">
+    <link rel="stylesheet" href="../CSS/components/header.css">
+    <link rel="stylesheet" href="../CSS/components/table.css">
+    <script src="https://cdn.metroui.org.ua/current/metro.js"></script>
+    <link rel="stylesheet" href="https://cdn.metroui.org.ua/current/icons.css">
+    <script src="../JS/components.js"></script>
+    <script src="../JS/escaper.js"></script>
+</head>
+<body>
+
+<div id="header-placeholder"></div>
+<div id="sidebar-placeholder"></div>
+
+<h1 class="mx-auto">MATH LIBRARY</h1>
+
+<div class="mx-auto">
+    <text>
+        The Math library provides:<ul><li> mathematical constants</li><li> trigonometric functions </li><li> logarithms</li><li> other mathematical operations.</li><br>
+        To use it, import <code>!math</code> in your program.
+    </text>
+
+    <div class="code">
+&lt;import id="!math"/&gt;
+    </div>
+
+    <h2>Constants</h2>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Name</th>
+                <th>Value</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td><code>pi</code></td>
+                <td>3.141592653589793</td>
+                <td>Archimedes's constant.<br> The ratio of a circle's circumference to its diameter.</td>
+            </tr>
+            <tr>
+                <td><code>e</code></td>
+                <td>2.718281828459045</td>
+                <td>Euler's number. Base of natural logarithms.</td>
+            </tr>
+            <tr>
+                <td><code>inf</code></td>
+                <td>∞</td>
+                <td>Positive infinity. Larger than any number.</td>
+            </tr>
+            <tr>
+                <td><code>nan</code></td>
+                <td>NaN</td>
+                <td>Not a Number.<br> Result of undefined operations (e.g., 0/0).</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="code">
+&lt;assign id="circle_area"&gt;
+    &lt;mul&gt;
+        &lt;access id="pi"/&gt;
+        &lt;mul&gt;
+            &lt;access id="radius"/&gt;
+            &lt;access id="radius"/&gt;
+        &lt;/mul&gt;
+    &lt;/mul&gt;
+&lt;/assign&gt;
+    </div>
+
+    <h2>Unary Functions</h2>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Function</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td><code>sin</code>, <code>cos</code>, <code>tan</code></td>
+                <td>Trigonometric functions (radians)</td>
+            </tr>
+            <tr>
+                <td><code>asin</code>, <code>acos</code>, <code>atan</code></td>
+                <td>Inverse trigonometric functions</td>
+            </tr>
+            <tr>
+                <td><code>sinh</code>, <code>cosh</code>, <code>tanh</code></td>
+                <td>Hyperbolic functions</td>
+            </tr>
+            <tr>
+                <td><code>asinh</code>, <code>acosh</code>, <code>atanh</code></td>
+                <td>Inverse hyperbolic functions</td>
+            </tr>
+            <tr>
+                <td><code>exp</code></td>
+                <td>Exponential (e^x)</td>
+            </tr>
+            <tr>
+                <td><code>ln</code></td>
+                <td>Natural logarithm (base e)</td>
+            </tr>
+            <tr>
+                <td><code>log2</code>, <code>log10</code></td>
+                <td>Base-2 and base-10 logarithms</td>
+            </tr>
+            <tr>
+                <td><code>sqrt</code></td>
+                <td>Square root</td>
+            </tr>
+            <tr>
+                <td><code>ceil</code>, <code>floor</code>, <code>round</code>, <code>trunc</code></td>
+                <td>Rounding functions</td>
+            </tr>
+            <tr>
+                <td><code>fract</code></td>
+                <td>Fractional part of a number</td>
+            </tr>
+            <tr>
+                <td><code>sign</code></td>
+                <td>Sign of a number (-1, 0, 1)</td>
+            </tr>
+            <tr>
+                <td><code>deg</code>, <code>rad</code></td>
+                <td>Convert between degrees and radians</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="code">
+&lt;assign id="angle_rad"&gt;
+    &lt;call id="rad"&gt;
+        &lt;int&gt;90&lt;/int&gt;
+    &lt;/call&gt;
+&lt;/assign&gt;
+
+&lt;assign id="sin_val"&gt;
+    &lt;call id="sin"&gt;
+        &lt;access id="angle_rad"/&gt;
+    &lt;/call&gt;
+&lt;/assign&gt;
+
+&lt;call id="println"&gt;
+    &lt;add&gt;
+        &lt;str&gt;sin(90°) = &lt;/str&gt;
+        &lt;access id="sin_val"/&gt;
+    &lt;/add&gt;
+&lt;/call&gt;
+    </div>
+
+    <h2>Binary Functions</h2>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Function</th>
+                <th>Arguments</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td><code>atan2</code></td>
+                <td><code>y, x</code></td>
+                <td>Four-quadrant inverse tangent</td>
+            </tr>
+            <tr>
+                <td><code>hypot</code></td>
+                <td><code>x, y</code></td>
+                <td>Euclidean distance (sqrt(x² + y²))</td>
+            </tr>
+            <tr>
+                <td><code>max</code></td>
+                <td><code>a, b</code></td>
+                <td>Returns the larger of two numbers</td>
+            </tr>
+            <tr>
+                <td><code>min</code></td>
+                <td><code>a, b</code></td>
+                <td>Returns the smaller of two numbers</td>
+            </tr>
+            <tr>
+                <td><code>log</code></td>
+                <td><code>a, b</code></td>
+                <td>Logarithm of a with base b</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="code">
+&lt;assign id="distance"&gt;
+    &lt;call id="hypot"&gt;
+        &lt;int&gt;3&lt;/int&gt;
+        &lt;int&gt;4&lt;/int&gt;
+    &lt;/call&gt;
+&lt;/assign&gt;
+&lt;!-- distance = 5 --&gt;
+
+&lt;assign id="larger"&gt;
+    &lt;call id="max"&gt;
+        &lt;int&gt;10&lt;/int&gt;
+        &lt;int&gt;20&lt;/int&gt;
+    &lt;/call&gt;
+&lt;/assign&gt;
+&lt;!-- larger = 20 --&gt;
+    </div>
+
+    <h2>Ternary Function</h2>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Function</th>
+                <th>Arguments</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td><code>lerp</code></td>
+                <td><code>a, b, t</code></td>
+                <td>Linear interpolation between a and b at factor t (0-1)</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="code">
+&lt;assign id="halfway"&gt;
+    &lt;call id="lerp"&gt;
+        &lt;int&gt;0&lt;/int&gt;
+        &lt;int&gt;100&lt;/int&gt;
+        &lt;float&gt;0.5&lt;/float&gt;
+    &lt;/call&gt;
+&lt;/assign&gt;
+&lt;!-- halfway = 50 --&gt;
+    </div>
+
+    <h2>Examples</h2>
+
+    <h3>Calculate Circle Circumference</h3>
+    <div class="code">
+&lt;assign id="radius"&gt;&lt;int&gt;5&lt;/int&gt;&lt;/assign&gt;
+
+&lt;assign id="circumference"&gt;
+    &lt;mul&gt;
+        &lt;int&gt;2&lt;/int&gt;
+        &lt;mul&gt;
+            &lt;access id="pi"/&gt;
+            &lt;access id="radius"/&gt;
+        &lt;/mul&gt;
+    &lt;/mul&gt;
+&lt;/assign&gt;
+
+&lt;call id="println"&gt;
+    &lt;add&gt;
+        &lt;str&gt;Circumference: &lt;/str&gt;
+        &lt;access id="circumference"/&gt;
+    &lt;/add&gt;
+&lt;/call&gt;
+    </div>
+
+    <div class="note">
+        <strong>Note:</strong> All trigonometric functions work in radians.<br>
+        Use <code>rad</code> to convert degrees to radians, and <code>deg</code> to convert radians to degrees.<br>
+        Integer arguments are automatically converted to floating-point numbers.
+    </div>
+
+</div>
+
+<div id="footer-placeholder"></div>
+
+</body>
+</html>

@@ -5,14 +5,23 @@ body {
    background-size: 200px 200px;
 }
 
-h1,h2,h3,h4,h5,h6,p,a,li{
-    color: #9c0049;
+h1,h2,h3,h4,h5,h6,p,li,text{
+    color: #9c0049 !important;
     font-family: "Century Gothic Paneuropean";
     text-decoration: none !important;
 }
 
 a:hover{
-    color: #63002e;
+    color: #9c0049 !important;
+}
+
+a{
+    color: #63002e !important;
+    cursor: pointer;
+}
+
+a,text{
+    font-size: 20px !important;
 }
 
 
@@ -29,4 +38,10 @@ a:hover{
     background-color: #222;
     border: none;
     color: #9c0049;
+}
+
+code{
+    background-color: #222;
+    border: #333 3px solid;
+    color: #FFF;
 }

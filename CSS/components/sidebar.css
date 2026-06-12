@@ -1,8 +1,3 @@
-/** КОД ЗА SIDEBAR */
-/*! ПРЕДНАЗНАЧЕН ЗА ОБЩА УПОТРЕБА*/
-
-
-
 .offcanvas-title{
   font-size: 1.5rem;
 }
@@ -33,8 +28,9 @@
        box-shadow: 0 0 0 3px rgba(240, 240, 240, 0.8);
 }
 
-a{
-  font-size: 25px; 
+.sidebar a{
+  font-size: 20px !important; 
+  font-weight: 600;
   text-decoration: none;
 }
 

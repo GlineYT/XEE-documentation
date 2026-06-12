@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>XMLang EE Documentation - Crypto Library</title>
+    <link rel="stylesheet" href="https://cdn.metroui.org.ua/current/metro.css">
+    <link rel="stylesheet" href="../CSS/styles.css">
+    <link rel="stylesheet" href="../CSS/docs/get-started.css">
+    <link rel="stylesheet" href="../CSS/docs/tags.css">
+    <link rel="stylesheet" href="../CSS/docs/docs.css">
+    <link rel="stylesheet" href="../CSS/components/sidebar.css">
+        <link rel="stylesheet" href="../CSS/components/table.css">
+    <link rel="stylesheet" href="../CSS/components/note.css">
+    <link rel="stylesheet" href="../CSS/components/code.css">
+    <link rel="stylesheet" href="../CSS/components/colors.css">
+    <link rel="stylesheet" href="../CSS/components/footer.css">
+    <link rel="stylesheet" href="../CSS/components/header.css">
+    <script src="https://cdn.metroui.org.ua/current/metro.js"></script>
+    <link rel="stylesheet" href="https://cdn.metroui.org.ua/current/icons.css">
+    <script src="../JS/components.js"></script>
+    <script src="../JS/escaper.js"></script>
+</head>
+<body>
+
+<div id="header-placeholder"></div>
+<div id="sidebar-placeholder"></div>
+
+<h1 class="mx-auto">CRYPTO LIBRARY</h1>
+
+<div class="mx-auto">
+    <text>
+        The Crypto library provides: <ul> <li> cryptographic hashing </li><li> HMAC</li><li>password hashing functions.</li> </ul>
+        To use it, import <code>!crypto</code> in your program.
+    </text>
+
+    <div class="code">
+
+&lt;import id="!crypto"/&gt;
+    </div>
+
+    <h2>Functions</h2>
+<div class="mx-auto">
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Name</th>
+                <th>Arguments</th>
+                <th>Returns</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td><code>crypto_hash</code></td>
+                <td><code>algorithm, input</code></td>
+                <td>String (hex)</td>
+                <td>Computes a hash of the input string.<br>Uses the algorithm specified</td>
+            </tr>
+            <tr>
+                <td><code>crypto_hmac</code></td>
+                <td><code>algorithm, key, input</code></td>
+                <td>String (hex)</td>
+                <td>Computes HMAC-SHA256.</td>
+            </tr>
+            <tr>
+                <td><code>bcrypt_hash</code></td>
+                <td><code>password, cost</code></td>
+                <td>String (bcrypt hash)</td>
+                <td>Hashes a password using bcrypt<br> takes a cost factor (4-31).</td>
+            </tr>
+            <tr>
+                <td><code>bcrypt_verify</code></td>
+                <td><code>password, hash</code></td>
+                <td>Boolean</td>
+                <td>Verifies a password against a bcrypt hash.</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+    <h2>Supported Algorithms</h2>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Algorithm</th>
+                <th>Output length</th>
+                <th>Use case</th>
+            </tr>
+            <tr>
+                <td><code>md5</code></td>
+                <td>32 hex chars</td>
+                <td>Legacy / checksums (NOT for security)</td>
+            </tr>
+            <tr>
+                <td><code>sha256</code></td>
+                <td>64 hex chars</td>
+                <td>Security / integrity</td>
+            </tr>
+            <tr>
+                <td><code>sha512</code></td>
+                <td>128 hex chars</td>
+                <td>Security / integrity</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>crypto_hash</h2>
+    <text>Computes a cryptographic hash of the input string.</text>
+
+    <div class="code">
+&lt;assign id="md5_hash"&gt;
+    &lt;call id="crypto_hash"&gt;
+        &lt;str&gt;md5&lt;/str&gt;
+        &lt;str&gt;Hello World&lt;/str&gt;
+    &lt;/call&gt;
+&lt;/assign&gt;
+
+&lt;assign id="sha256_hash"&gt;
+    &lt;call id="crypto_hash"&gt;
+        &lt;str&gt;sha256&lt;/str&gt;
+        &lt;str&gt;Hello World&lt;/str&gt;
+    &lt;/call&gt;
+&lt;/assign&gt;
+
+&lt;call id="println"&gt;
+    &lt;add&gt;
+        &lt;str&gt;MD5: &lt;/str&gt;
+        &lt;access id="md5_hash"/&gt;
+    &lt;/add&gt;
+&lt;/call&gt;
+    </div>
+
+    <h2>crypto_hmac</h2>
+    <text>Computes HMAC-SHA256 for message authentication. <br> Requires a secret key.</text>
+
+    <div class="code">
+&lt;assign id="hmac_result"&gt;
+    &lt;call id="crypto_hmac"&gt;
+        &lt;str&gt;sha256&lt;/str&gt;
+        &lt;str&gt;my_secret_key&lt;/str&gt;
+        &lt;str&gt;message to authenticate&lt;/str&gt;
+    &lt;/call&gt;
+&lt;/assign&gt;
+    </div>
+
+    <h2>bcrypt_hash</h2>
+    <text>
+        Hashes a password using bcrypt. <br>
+    </text>
+
+    <div class="code">
+&lt;assign id="password_hash"&gt;
+    &lt;call id="bcrypt_hash"&gt;
+        &lt;str&gt;my_secure_password&lt;/str&gt;
+        &lt;int&gt;12&lt;/int&gt;
+    &lt;/call&gt;
+&lt;/assign&gt;
+
+&lt;call id="println"&gt;
+    &lt;add&gt;
+        &lt;str&gt;Hash: &lt;/str&gt;
+        &lt;access id="password_hash"/&gt;
+    &lt;/add&gt;
+&lt;/call&gt;
+    </div>
+
+    <h2>bcrypt_verify</h2>
+    <text>Verifies a password against a stored bcrypt hash. <br> Returns true if the password matches.</text>
+
+    <div class="code">
+&lt;assign id="is_valid"&gt;
+    &lt;call id="bcrypt_verify"&gt;
+        &lt;str&gt;my_secure_password&lt;/str&gt;
+        &lt;access id="password_hash"/&gt;
+    &lt;/call&gt;
+&lt;/assign&gt;
+
+&lt;call id="println"&gt;
+    &lt;add&gt;
+        &lt;str&gt;Password valid: &lt;/str&gt;
+        &lt;if&gt;
+            &lt;access id="is_valid"/&gt;
+            &lt;str&gt;true&lt;/str&gt;
+            &lt;str&gt;false&lt;/str&gt;
+        &lt;/if&gt;
+    &lt;/add&gt;
+&lt;/call&gt;
+    </div>
+
+    <div class="note">
+        <strong>Note:</strong> bcrypt hashes are automatically salted.<br>
+        The cost factor determines the number of iterations (2^cost).<br> A cost of 12 means 4096 iterations.
+    </div>
+
+    <div class="note note-warning">
+        <strong>Security Warning:</strong>  For password storage, always use bcrypt
+    </div>
+</div>
+
+<div id="footer-placeholder"></div>
+
+</body>
+</html>

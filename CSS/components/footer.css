@@ -1,9 +1,9 @@
-.footer{
+.footer {
     background-color: #222;
-    border-top  : 3px solid #333;
+    border-top: 3px solid #333;
     width: 100vw;
     margin-top: 50px;
-    text-align: center;
+    text-align: center; 
 }
 
 .footer h1{
@@ -15,6 +15,6 @@
     text-decoration: none !important;
 }
 
-a:hover{
+.footer a:hover{
     color: #63002e !important;
 }

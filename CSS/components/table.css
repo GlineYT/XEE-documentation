@@ -3,34 +3,31 @@ table{
     width: 90% !important;
     color: white;
     margin-top: 20px;
-    margin-left: 100px;
     padding: 10px;
     font-size: 20px;
     margin-bottom: 20px;
+}
+
+thead {
+    background-color: #222 !important;
+    border: #333 solid 3px;
+    color: white;
+}
+
+table thead tr {
+    border-bottom: none !important;
 }
 
 table code{
     color: white;
 }
 
-table td,table th {
+table td,table th{
     padding: 10px;
-    border: #333 solid 3px;
+    border: #333 solid 3px !important;
+    color: white !important;
 }
 
-@media screen and (max-width:1350px) and (min-width:1000px){
-    table{
-        margin-left: 50px;
-    }
-}
-
-@media screen and (max-width:999px) {
-    table{
-    margin: 10px;
-    width: 100%;
-    padding: 5px;
-    }
-}
 
 @media screen and (max-width:920px){
      .btn-custom,  .grade-button,  .grade-button-ag,  .grade-button-filter   {

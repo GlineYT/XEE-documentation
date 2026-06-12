@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>XMLang EE Documentation</title>
+    <link rel="stylesheet" href="https://cdn.metroui.org.ua/current/metro.css">
+    <link rel="stylesheet" href="../CSS/styles.css">
+    <link rel="stylesheet" href="../CSS/docs/get-started.css">
+    <link rel="stylesheet" href="../CSS/docs/tags.css">
+    <link rel="stylesheet" href="../CSS/docs/docs.css">
+    <link rel="stylesheet" href="../CSS/components/sidebar.css">
+    <link rel="stylesheet" href="../CSS/components/note.css">
+    <link rel="stylesheet" href="../CSS/components/code.css">
+    <link rel="stylesheet" href="../CSS/components/colors.css">
+    <link rel="stylesheet" href="../CSS/components/footer.css">
+    <link rel="stylesheet" href="../CSS/components/table.css">
+    <link rel="stylesheet" href="../CSS/components/header.css">
+    <script src="https://cdn.metroui.org.ua/current/metro.js"></script>
+    <link rel="stylesheet" href="https://cdn.metroui.org.ua/current/icons.css">
+    <script src="../JS/components.js"></script>
+    <script src="../JS/escaper.js"></script>
+</head>
+<body>
+
+
+<div id="header-placeholder"></div>
+
+<!-- This div gets filled with sidebar.html -->
+<div id="sidebar-placeholder"></div>
+
+<h1 class="mx-auto">VARIABLES</h1>
+
+<div class="mx-auto">
+
+<text>
+    XMLEE has a few variable types. These are listed below
+</text>
+
+
+<table class="table">
+<tbody><tr>
+<th>Name
+</th>
+<th>Children
+</th>
+<th>Description
+</th></tr>
+<tr>
+<td><code>int</code>
+</td>
+<td style="background:#FF0000;color:#FFF;font-size:125%;line-height:100%;vertical-align:middle;text-align:center;" class="table-terntrue">✗
+</td>
+<td>Signed 64-bit integer.
+</td></tr>
+<tr>
+<td><code>float</code>
+</td>
+<td style="background:#FF0000;color:#FFF;font-size:125%;line-height:100%;vertical-align:middle;text-align:center;" class="table-terntrue">✗
+</td>
+<td>Double-precision floating-point number, as per IEEE 754 specification.
+</td></tr>
+<tr>
+<td><code>bool</code>
+</td>
+<td style="background:#FF0000;color:#FFF;font-size:125%;line-height:100%;vertical-align:middle;text-align:center;" class="table-terntrue">✗
+</td>
+<td>A 1-bit boolean value.
+</td></tr>
+<tr>
+<td><code>str</code>
+</td>
+<td style="background:#FF0000;color:#FFF;font-size:125%;line-height:100%;vertical-align:middle;text-align:center;" class="table-terntrue">✗
+</td>
+<td>An arbitrary length string. Multi-byte characters should be represented correctly. Immutable.
+</td></tr>
+<tr>
+<td><code>arr</code>
+</td>
+<td style="background:#00B300;color:#FFF;font-size:125%;line-height:100%;vertical-align:middle;text-align:center;" class="table-terntrue">✓
+</td>
+<td>An array of any type of variable. All children are evaluated and added in order of declaration.
+</td></tr>
+<tr>
+<td><code>dict</code>
+</td>
+<td style="background:#00B300;color:#FFF;font-size:125%;line-height:100%;vertical-align:middle;text-align:center;" class="table-terntrue">✓
+</td>
+<td>A mapping of keys to values. In implementation, every variable type should be able to be both a key and a value.<br>Expects <code>pair</code> for children while defining.
+</td></tr>
+<tr>
+<td><code>set</code>
+</td>
+<td style="background:#00B300;color:#FFF;font-size:125%;line-height:100%;vertical-align:middle;text-align:center;" class="table-terntrue">✓
+</td>
+<td>A unique, unordered set of elements. All children are evaluated and added.
+</td></tr>
+<tr>
+<td><code>func</code>
+</td>
+<td style="background:#00B300;color:#FFF;font-size:125%;line-height:100%;vertical-align:middle;text-align:center;" class="table-terntrue">✓
+</td>
+<td>A function, with <code>args</code> and an element to evaluate when called.<br>These can be either defined by the user or imported from a built-in library.<br>When evaluating the inner block with <code>call</code>, the arguments are added to scope respective to their order in <code>args</code>.
+</td></tr>
+<tr>
+<td><code>null</code>
+</td>
+<td style="background:#FF0000;color:#FFF;font-size:125%;line-height:100%;vertical-align:middle;text-align:center;" class="table-terntrue">✗
+</td>
+<td>A null value.
+</td></tr>
+<tr>
+<td><code>break</code>
+</td>
+<td style="background:#FF0000;color:#FFF;font-size:125%;line-height:100%;vertical-align:middle;text-align:center;" class="table-terntrue">✗
+</td>
+<td>Breaking constant. Return this inside a loop to break out.
+</td></tr>
+<tr>
+<td><code>continue</code>
+</td>
+<td style="background:#FF0000;color:#FFF;font-size:125%;line-height:100%;vertical-align:middle;text-align:center;" class="table-terntrue">✗
+</td>
+<td>Continuing constant. Return this inside of a loop to jump to the next iteration.
+</td></tr></tbody></table>
+<h2>Ints and floats</h2>
+<text>
+    Integers are whole numbers and work similarly to integers in any other programming language <br>
+    As with any other variable, they are defined using the assign keyword <br>
+    They are defined as such:
+</text>
+<div class="code">
+<assign id="int">
+    <int>5</int>
+</assign>    
+</div>
+
+
+<text>
+ The value in between the opening and closing tag is the value fo the integer <br>
+ Floats are defined in the same manner
+<br>
+<h2>Strings</h2>
+Str represents a string of characters of an arbitrary length <br>
+Supports multi-byte characters, e.g. UTF-16<br>
+Additionally, a range of string manipulation functions are availible <br>
+ more information in the <a>standart library</a> documentation
+</text>
+
+<div class="code">
+<assign id="string">
+    <str>hello</str>
+</assign>    
+</div>
+
+<text>
+    Strings can be concatenated with other variable types <br>
+    This is similar to python's "f-string". It is done using a array <br>
+    See the below  code for reference
+</text>
+
+<div class="code">
+
+<assign id="formatted">
+    <call id="join">
+        <arr>
+            <str>Your answer is </str>
+            <int>10</int>
+            <str> and that is </str>
+            <bool>False</bool>
+        </arr>
+    </call>
+</assign>
+
+</div>
+<text>
+This is recommended over using the add tag, because it only accepts 2 children<br>
+While the join function allows for a array with a arbitrary amount of children
+</text>
+
+<h2>Arrays</h2>
+<text>
+ Arrays represent a array of any type of variable.
+</text>
+
+<div class="code">
+    <!-- An array is defined as such -->
+<assign id="a">
+    <arr>
+        <int>1</int>
+        <int>2</int>
+    </arr>
+</assign>    
+</div>
+
+<text>
+ Arrays can be concatenated using the "concat" function in the standart library <br>
+ To nest one array into another, use the add tag.
+</text>
+
+<div class="code">
+<program>
+    &lt;import id="!std" /&gt;
+    &lt;import id="!io" /&gt;
+
+    <assign id="a">
+        <arr>
+            <int>1</int>
+            <int>2</int>
+        </arr>
+    </assign>    
+    
+    <assign id="b">
+        <arr>
+            <int>3</int>
+            <int>4</int>
+        </arr>
+    </assign>
+        
+    <assign id="c">
+        <call id="join">
+            <access id="a" />
+            <access id="b" />
+        </call>
+    </assign>
+
+    <call id="println">
+            <access id="c"/>
+    </call>
+</program>
+</div>
+
+<text>The above code outputs [1,2,3,4]</text><br>
+<text>The below code, however, would output [1,2,[3,4]]</text><br>
+
+<div class="code">
+<assign id="a">
+        <arr>
+            <int>1</int>
+            <int>2</int>
+        </arr>
+</assign>    
+    
+<assign id="b">
+        <arr>
+            <int>3</int>
+            <int>4</int>
+        </arr>
+</assign>
+    
+<assign id="c">
+        <add>
+            <access id="a" />
+            <access id="b" />
+        </add>
+</assign>
+</div>
+<text>This is useful when working with hierarchical or nested data structures</text><br>
+<text>For example parsing json,XML,HTML or other such hierarchical files</text><br>
+
+<h2>Dictionaries</h2>
+<text>Dicts represent key-value pairs, with the pair keyword </text>
+
+<div class="code">
+    <dict>
+        <pair>
+            <str>Name</str>
+            <str>Gameline</str>
+        </pair>
+    </dict>
+</div>
+
+<text>Dicts are accesible by key like so:</text>
+<div class="code">
+<call id="println">
+    <access id="dict">
+        <str>Name</str>
+    </access>
+    <!-- Will output "Gameline"-->
+</call>
+</div>
+<br>
+<text>Sets are like arrays, but they do not allow for duplicate values</text><br>
+<text>Functions are reusable pieces of code that may or may not take arguments</text><br>
+<text>Visit the functions page for complete information</text>
+
+</div>
+<div id="footer-placeholder"></div> 
+
+</body>
+</html>
