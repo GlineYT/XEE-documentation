@@ -57,7 +57,7 @@
 </td>
 <td style="background:#FF0000;color:#FFF;font-size:125%;line-height:100%;vertical-align:middle;text-align:center;" class="table-terntrue">✗
 </td>
-<td>Double-precision floating-point number, as per IEEE 754 specification.
+<td>Double-precision floating-point number. <br> as per IEEE 754 specification.
 </td></tr>
 <tr>
 <td><code>bool</code>
@@ -71,35 +71,35 @@
 </td>
 <td style="background:#FF0000;color:#FFF;font-size:125%;line-height:100%;vertical-align:middle;text-align:center;" class="table-terntrue">✗
 </td>
-<td>An arbitrary length string. Multi-byte characters should be represented correctly. Immutable.
+<td>An arbitrary length string.<br> Multi-byte characters should be represented correctly.<br> Immutable.
 </td></tr>
 <tr>
 <td><code>arr</code>
 </td>
 <td style="background:#00B300;color:#FFF;font-size:125%;line-height:100%;vertical-align:middle;text-align:center;" class="table-terntrue">✓
 </td>
-<td>An array of any type of variable. All children are evaluated and added in order of declaration.
+<td>An array of any type of variable.<br> All children are evaluated and added in order of declaration.
 </td></tr>
 <tr>
 <td><code>dict</code>
 </td>
 <td style="background:#00B300;color:#FFF;font-size:125%;line-height:100%;vertical-align:middle;text-align:center;" class="table-terntrue">✓
 </td>
-<td>A mapping of keys to values. In implementation, every variable type should be able to be both a key and a value.<br>Expects <code>pair</code> for children while defining.
+<td>A mapping of keys to values. <br> In implementation, every variable type should be able to be both a key and a value.<br>Expects <code>pair</code> for children while defining.
 </td></tr>
 <tr>
 <td><code>set</code>
 </td>
 <td style="background:#00B300;color:#FFF;font-size:125%;line-height:100%;vertical-align:middle;text-align:center;" class="table-terntrue">✓
 </td>
-<td>A unique, unordered set of elements. All children are evaluated and added.
+<td>A unique, unordered set of elements. <br> All children are evaluated and added.
 </td></tr>
 <tr>
 <td><code>func</code>
 </td>
 <td style="background:#00B300;color:#FFF;font-size:125%;line-height:100%;vertical-align:middle;text-align:center;" class="table-terntrue">✓
 </td>
-<td>A function, with <code>args</code> and an element to evaluate when called.<br>These can be either defined by the user or imported from a built-in library.<br>When evaluating the inner block with <code>call</code>, the arguments are added to scope respective to their order in <code>args</code>.
+<td>A function, with <code>args</code> and an element to evaluate when called.<br>These can be either defined by the user or imported from a built-in library.<br>Evaluate the inner block with <code>call</code>.<br> The arguments are added to scope respective to their order in <code>args</code>.
 </td></tr>
 <tr>
 <td><code>null</code>
@@ -132,6 +132,11 @@
 <assign id="int">
     <int>5</int>
 </assign>    
+</div>
+<div class="note">
+    <strong>Note:</strong> Integer literals in XEE are <strong>decimal only</strong>.<br>
+    Binary (0b), octal (0o), and hexadecimal (0x) prefixes are not supported.<br>
+    Use the <code>radix</code> function to parse binary/hex strings if needed.
 </div>
 
 

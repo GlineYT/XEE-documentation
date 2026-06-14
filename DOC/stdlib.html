@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>XMLang EE Documentation - Standard Library</title>
+    <link rel="stylesheet" href="https://cdn.metroui.org.ua/current/metro.css">
+    <link rel="stylesheet" href="../CSS/styles.css">
+    <link rel="stylesheet" href="../CSS/docs/get-started.css">
+    <link rel="stylesheet" href="../CSS/docs/tags.css">
+    <link rel="stylesheet" href="../CSS/docs/docs.css">
+    <link rel="stylesheet" href="../CSS/components/sidebar.css">
+    <link rel="stylesheet" href="../CSS/components/note.css">
+    <link rel="stylesheet" href="../CSS/components/code.css">
+    <link rel="stylesheet" href="../CSS/components/colors.css">
+    <link rel="stylesheet" href="../CSS/components/footer.css">
+    <link rel="stylesheet" href="../CSS/components/header.css">
+    <link rel="stylesheet" href="../CSS/components/table.css">
+    <script src="https://cdn.metroui.org.ua/current/metro.js"></script>
+    <link rel="stylesheet" href="https://cdn.metroui.org.ua/current/icons.css">
+    <script src="../JS/components.js"></script>
+    <script src="../JS/escaper.js"></script>
+</head>
+<body>
+
+<div id="header-placeholder"></div>
+<div id="sidebar-placeholder"></div>
+
+<h1 class="mx-auto">STANDARD LIBRARY</h1>
+
+<div class="mx-auto">
+    <text>
+        The Standard Library provides core functionality including: <ul> <li>I/O </li><li> string manipulation</li><li> array operations</li><li> dictionary manipulation</li><li> type conversion</li><li> utility functions</li></ul> 
+    </text>
+
+    <div class="code">
+&lt;import id="!std"/&gt;
+    </div>
+
+    <h2>I/O Functions</h2>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Name</th>
+                <th>Arguments</th>
+                <th>Returns</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td><code>print</code></td>
+                <td><code>value</code></td>
+                <td>None</td>
+                <td>Prints a value to stdout without a newline.</td>
+            </tr>
+            <tr>
+                <td><code>println</code></td>
+                <td><code>value</code></td>
+                <td>None</td>
+                <td>Prints a value to stdout with a newline and flushes.</td>
+            </tr>
+            <tr>
+                <td><code>flush</code></td>
+                <td>None</td>
+                <td>None</td>
+                <td>Flushes stdout buffer.</td>
+            </tr>
+            <tr>
+                <td><code>input</code></td>
+                <td>None</td>
+                <td>String</td>
+                <td>Reads a line from stdin, strips whitespace.</td>
+            </tr>
+            <tr>
+                <td><code>sleep</code></td>
+                <td><code>seconds</code></td>
+                <td>None</td>
+                <td>Pauses execution for the specified number of seconds.</td>
+            </tr>
+            <tr>
+                <td><code>time</code></td>
+                <td>None</td>
+                <td>Float</td>
+                <td>Returns the current Unix timestamp as a float.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>String & Array Manipulation</h2>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Name</th>
+                <th>Arguments</th>
+                <th>Returns</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td><code>join</code></td>
+                <td><code>array</code></td>
+                <td>String</td>
+                <td>Converts array elements to strings and concatenates them.</td>
+            </tr>
+            <tr>
+                <td><code>split</code></td>
+                <td><code>string, delimiter</code></td>
+                <td>Array</td>
+                <td>Splits a string by delimiter into an array.</td>
+            </tr>
+            <tr>
+                <td><code>split_at</code></td>
+                <td><code>array, index</code></td>
+                <td>Array of two arrays</td>
+                <td>Splits an array into two halves at the specified index.</td>
+            </tr>
+            <tr>
+                <td><code>concat</code></td>
+                <td><code>array1, array2</code></td>
+                <td>Array</td>
+                <td>Concatenates two arrays element-wise (not nested).</td>
+            </tr>
+            <tr>
+                <td><code>substr</code></td>
+                <td><code>string, start, end</code></td>
+                <td>String</td>
+                <td>Extracts a substring from start (inclusive) to end (exclusive).</td>
+            </tr>
+            <tr>
+                <td><code>len</code></td>
+                <td><code>value</code></td>
+                <td>Integer</td>
+                <td>Returns the length of a string, array, dict, or set.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Dictionary Functions</h2>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Name</th>
+                <th>Arguments</th>
+                <th>Returns</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td><code>dict_merge</code></td>
+                <td><code>dict1, dict2</code></td>
+                <td>Dictionary</td>
+                <td>Merges two dictionaries (second overwrites first on key conflicts).</td>
+            </tr>
+            <tr>
+                <td><code>dict_set</code></td>
+                <td><code>dict, key, value</code></td>
+                <td>Dictionary</td>
+                <td>Returns a new dictionary with the key-value pair added/updated.</td>
+            </tr>
+            <tr>
+                <td><code>dict_get</code></td>
+                <td><code>dict, key</code></td>
+                <td>Any or null</td>
+                <td>Returns value for key, or null if not found.</td>
+            </tr>
+            <tr>
+                <td><code>dict_remove</code></td>
+                <td><code>dict, key</code></td>
+                <td>Dictionary</td>
+                <td>Returns a new dictionary with the key removed.</td>
+            </tr>
+            <tr>
+                <td><code>dict_has</code></td>
+                <td><code>dict, key</code></td>
+                <td>Boolean</td>
+                <td>Returns true if the key exists in the dictionary.</td>
+            </tr>
+            <tr>
+                <td><code>dict_keys</code></td>
+                <td><code>dict</code></td>
+                <td>Array</td>
+                <td>Returns an array of all keys in the dictionary.</td>
+            </tr>
+            <tr>
+                <td><code>dict_values</code></td>
+                <td><code>dict</code></td>
+                <td>Array</td>
+                <td>Returns an array of all values in the dictionary.</td>
+            </tr>
+            <tr>
+                <td><code>dict_items</code></td>
+                <td><code>dict</code></td>
+                <td>Array</td>
+                <td>Returns an array of [key, value] pairs.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Type Conversion & Utility</h2>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Name</th>
+                <th>Arguments</th>
+                <th>Returns</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td><code>chr</code></td>
+                <td><code>code</code></td>
+                <td>String</td>
+                <td>Converts a Unicode code point to a single-character string.</td>
+            </tr>
+            <tr>
+                <td><code>ord</code></td>
+                <td><code>character</code></td>
+                <td>Integer</td>
+                <td>Converts a single-character string to its Unicode code point.</td>
+            </tr>
+            <tr>
+                <td><code>radix</code></td>
+                <td><code>value, base</code></td>
+                <td>String or Integer</td>
+                <td>Converts numbers between bases 2-36 (string↔integer).</td>
+            </tr>
+            <tr>
+                <td><code>type</code></td>
+                <td><code>value</code></td>
+                <td>String</td>
+                <td>Returns the type name of the value.</td>
+            </tr>
+            <tr>
+                <td><code>hash</code></td>
+                <td><code>value</code></td>
+                <td>Integer</td>
+                <td>Returns a non-cryptographic hash (for hash tables, not security).</td>
+            </tr>
+            <tr>
+                <td><code>range</code></td>
+                <td><code>start, end, step</code></td>
+                <td>Array</td>
+                <td>Creates an array of integers from start to end (exclusive) by step.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Examples</h2>
+
+    <h3>String Formatting with join</h3>
+    <div class="code">
+&lt;assign id="name"&gt;&lt;str&gt;Gameline&lt;/str&gt;&lt;/assign&gt;
+&lt;assign id="score"&gt;&lt;int&gt;95&lt;/int&gt;&lt;/assign&gt;
+
+&lt;assign id="message"&gt;
+    &lt;call id="join"&gt;
+        &lt;arr&gt;
+            &lt;str&gt;Player &lt;/str&gt;
+            &lt;access id="name"/&gt;
+            &lt;str&gt; scored &lt;/str&gt;
+            &lt;access id="score"/&gt;
+            &lt;str&gt; points&lt;/str&gt;
+        &lt;/arr&gt;
+    &lt;/call&gt;
+&lt;/assign&gt;
+&lt;call id="println"&gt;&lt;access id="message"/&gt;&lt;/call&gt;
+    </div>
+
+    <h3>Dictionary Operations</h3>
+    <div class="code">
+&lt;assign id="user"&gt;
+    &lt;dict&gt;
+        &lt;pair&gt;&lt;str&gt;name&lt;/str&gt;&lt;str&gt;Gameline&lt;/str&gt;&lt;/pair&gt;
+        &lt;pair&gt;&lt;str&gt;age&lt;/str&gt;&lt;int&gt;25&lt;/int&gt;&lt;/pair&gt;
+    &lt;/dict&gt;
+&lt;/assign&gt;
+
+&lt;!-- Add a new key --&gt;
+&lt;assign id="user2"&gt;
+    &lt;call id="dict_set"&gt;
+        &lt;access id="user"/&gt;
+        &lt;str&gt;email&lt;/str&gt;
+        &lt;str&gt;gameline@example.com&lt;/str&gt;
+    &lt;/call&gt;
+&lt;/assign&gt;
+
+&lt;!-- Check if key exists --&gt;
+&lt;if&gt;
+    &lt;call id="dict_has"&gt;
+        &lt;access id="user"/&gt;
+        &lt;str&gt;email&lt;/str&gt;
+    &lt;/call&gt;
+    &lt;call id="println"&gt;&lt;str&gt;Has email&lt;/str&gt;&lt;/call&gt;
+    &lt;call id="println"&gt;&lt;str&gt;No email&lt;/str&gt;&lt;/call&gt;
+&lt;/if&gt;
+
+&lt;!-- Get all keys --&gt;
+&lt;assign id="keys"&gt;
+    &lt;call id="dict_keys"&gt;
+        &lt;access id="user"/&gt;
+    &lt;/call&gt;
+&lt;/assign&gt;
+    </div>
+
+    <h3>Array Concatenation and Splitting</h3>
+    <div class="code">
+&lt;assign id="arr1"&gt;&lt;arr&gt;&lt;int&gt;1&lt;/int&gt;&lt;int&gt;2&lt;/int&gt;&lt;int&gt;3&lt;/int&gt;&lt;/arr&gt;&lt;/assign&gt;
+&lt;assign id="arr2"&gt;&lt;arr&gt;&lt;int&gt;4&lt;/int&gt;&lt;int&gt;5&lt;/int&gt;&lt;int&gt;6&lt;/int&gt;&lt;/arr&gt;&lt;/assign&gt;
+
+&lt;assign id="combined"&gt;
+    &lt;call id="concat"&gt;
+        &lt;access id="arr1"/&gt;
+        &lt;access id="arr2"/&gt;
+    &lt;/call&gt;
+&lt;/assign&gt;
+
+&lt;assign id="halves"&gt;
+    &lt;call id="split_at"&gt;
+        &lt;access id="combined"/&gt;
+        &lt;int&gt;3&lt;/int&gt;
+    &lt;/call&gt;
+&lt;/assign&gt;
+    </div>
+
+    <h3>String Splitting and Substrings</h3>
+    <div class="code">
+&lt;assign id="csv"&gt;&lt;str&gt;apple,banana,cherry,date&lt;/str&gt;&lt;/assign&gt;
+
+&lt;assign id="fruits"&gt;
+    &lt;call id="split"&gt;
+        &lt;access id="csv"/&gt;
+        &lt;str&gt;,&lt;/str&gt;
+    &lt;/call&gt;
+&lt;/assign&gt;
+
+&lt;assign id="first_fruit"&gt;
+    &lt;access id="fruits"&gt;&lt;int&gt;0&lt;/int&gt;&lt;/access&gt;
+&lt;/assign&gt;
+
+&lt;assign id="sub"&gt;
+    &lt;call id="substr"&gt;
+        &lt;access id="first_fruit"/&gt;
+        &lt;int&gt;1&lt;/int&gt;
+        &lt;int&gt;4&lt;/int&gt;
+    &lt;/call&gt;
+&lt;/assign&gt;
+    </div>
+
+    <div class="note">
+        <strong>Note:</strong> Dictionary manipulation functions return <strong>new dictionaries</strong> <br> This follows the pure functional design of XMLang-EE.
+    </div>
+
+    <div class="note note-warning">
+        <strong>Warning:</strong> The <code>hash</code> function is <strong>not cryptographically secure</strong>.<br>It is not for security-sensitive operations. <br> For password hashing, use the Crypto library's <code>bcrypt_hash</code>.
+    </div>
+
+</div>
+
+<div id="footer-placeholder"></div>
+
+</body>
+</html>

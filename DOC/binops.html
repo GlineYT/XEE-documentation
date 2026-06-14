@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>XMLang EE Documentation - Binary Operators</title>
+    <link rel="stylesheet" href="https://cdn.metroui.org.ua/current/metro.css">
+    <link rel="stylesheet" href="../CSS/styles.css">
+    <link rel="stylesheet" href="../CSS/docs/get-started.css">
+    <link rel="stylesheet" href="../CSS/docs/tags.css">
+    <link rel="stylesheet" href="../CSS/docs/docs.css">
+    <link rel="stylesheet" href="../CSS/components/sidebar.css">
+    <link rel="stylesheet" href="../CSS/components/note.css">
+    <link rel="stylesheet" href="../CSS/components/code.css">
+    <link rel="stylesheet" href="../CSS/components/colors.css">
+    <link rel="stylesheet" href="../CSS/components/footer.css">
+    <link rel="stylesheet" href="../CSS/components/header.css">
+    <link rel="stylesheet" href="../CSS/components/table.css">
+    <script src="https://cdn.metroui.org.ua/current/metro.js"></script>
+    <link rel="stylesheet" href="https://cdn.metroui.org.ua/current/icons.css">
+    <script src="../JS/components.js"></script>
+    <script src="../JS/escaper.js"></script>
+</head>
+<body>
+
+<div id="header-placeholder"></div>
+<div id="sidebar-placeholder"></div>
+
+<h1 class="mx-auto">BINARY OPERATORS</h1>
+
+<div class="mx-auto">
+    <text>
+        Binary operators are tags that take exactly two children and perform an operation on them.<br>
+        Unlike function calls, these are built-in language tags that operate directly on values.
+    </text>
+    <br>
+    <text>
+        Binary operators in XEE provide:
+        <ul>
+            <li>Arithmetic operations (+, -, *, /, etc.)</li>
+            <li>Bitwise operations (AND, OR, XOR, shifts)</li>
+            <li>Comparison operations (eq, ne, lt, gt, leq, geq)</li>
+            <li>Array, set, and dictionary operations</li>
+        </ul>
+    </text>
+
+    <div class="note">
+        <strong>Note:</strong> Advanced mathematical functions are found in the <a href="mathlib.html">Math Library</a> as function calls.
+    </div>
+
+    <h2>Arithmetic Operators</h2>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Tag</th>
+                <th>Operation</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td><code>&lt;add&gt;</code></td>
+                <td>a + b</td>
+                <td>Adds two numbers (casts to float if needed).<br>
+                If array/set: appends second value.<br>
+                If strings: concatenates.
+                </td>
+            </tr>
+            <tr>
+                <td><code>&lt;sub&gt;</code></td>
+                <td>a - b</td>
+                <td>Subtracts two numbers (casts to float if needed).<br>
+                If array + integer: removes element at index.<br>
+                If set: removes second value.<br>
+                If dict: removes key-value pair by key.
+                </td>
+            </tr>
+            <tr>
+                <td><code>&lt;mul&gt;</code></td>
+                <td>a × b</td>
+                <td>Multiplies two numbers (casts to float if needed).</td>
+            </tr>
+            <tr>
+                <td><code>&lt;div&gt;</code></td>
+                <td>a ÷ b</td>
+                <td>Divides two numbers. Errors if b = 0.</td>
+            </tr>
+            <tr>
+                <td><code>&lt;mod&gt;</code></td>
+                <td>a % b</td>
+                <td>Remainder of division. Errors if b = 0.</td>
+            </tr>
+            <tr>
+                <td><code>&lt;pow&gt;</code></td>
+                <td>a^b</td>
+                <td>Raises a to power of b. Negative exponent returns float.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Bitwise Operators</h2>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Tag</th>
+                <th>Operation</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td><code>&lt;and&gt;</code></td>
+                <td>a & b</td>
+                <td>Bitwise AND of integers/booleans.<br>If sets: returns intersection.</td>
+            </tr>
+            <tr>
+                <td><code>&lt;or&gt;</code></td>
+                <td>a | b</td>
+                <td>Bitwise OR of integers/booleans.<br>If sets: returns union.</td>
+            </tr>
+            <tr>
+                <td><code>&lt;xor&gt;</code></td>
+                <td>a ^ b</td>
+                <td>Bitwise XOR of integers/booleans.<br>If sets: returns symmetric difference.</td>
+            </tr>
+            <tr>
+                <td><code>&lt;shl&gt;</code></td>
+                <td>a &lt;&lt; b</td>
+                <td>Shift left. Shifts bits of a left by b positions.</td>
+            </tr>
+            <tr>
+                <td><code>&lt;shr&gt;</code></td>
+                <td>a &gt;&gt; b</td>
+                <td>Shift right. Shifts bits of a right by b positions.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Comparison Operators</h2>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Tag</th>
+                <th>Operation</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td><code>&lt;eq&gt;</code></td>
+                <td>a == b</td>
+                <td>Returns true if values are equal.</td>
+            </tr>
+            <tr>
+                <td><code>&lt;ne&gt;</code></td>
+                <td>a != b</td>
+                <td>Returns true if values are not equal.</td>
+            </tr>
+            <tr>
+                <td><code>&lt;lt&gt;</code></td>
+                <td>a &lt; b</td>
+                <td>Returns true if a is less than b.</td>
+            </tr>
+            <tr>
+                <td><code>&lt;gt&gt;</code></td>
+                <td>a &gt; b</td>
+                <td>Returns true if a is greater than b.</td>
+            </tr>
+            <tr>
+                <td><code>&lt;leq&gt;</code></td>
+                <td>a ≤ b</td>
+                <td>Returns true if a is less than or equal to b.</td>
+            </tr>
+            <tr>
+                <td><code>&lt;geq&gt;</code></td>
+                <td>a ≥ b</td>
+                <td>Returns true if a is greater than or equal to b.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Examples</h2>
+
+    <h3>Arithmetic</h3>
+    <div class="code">
+&lt;assign id="sum"&gt;
+    &lt;add&gt;
+        &lt;int&gt;10&lt;/int&gt;
+        &lt;int&gt;20&lt;/int&gt;
+    &lt;/add&gt;
+&lt;/assign&gt;
+
+&lt;assign id="product"&gt;
+    &lt;mul&gt;
+        &lt;int&gt;5&lt;/int&gt;
+        &lt;int&gt;6&lt;/int&gt;
+    &lt;/mul&gt;
+&lt;/assign&gt;
+    </div>
+
+    <h3>Array and Set Operations</h3>
+    <div class="code">
+&lt;!-- Append to array (nests the second array) --&gt;
+&lt;assign id="nested"&gt;
+    &lt;add&gt;
+        &lt;arr&gt;&lt;int&gt;1&lt;/int&gt;&lt;int&gt;2&lt;/int&gt;&lt;/arr&gt;
+        &lt;arr&gt;&lt;int&gt;3&lt;/int&gt;&lt;int&gt;4&lt;/int&gt;&lt;/arr&gt;
+    &lt;/add&gt;
+&lt;/assign&gt;
+&lt;!-- Result: [1, 2, [3, 4]] --&gt;
+
+&lt;!-- Set intersection --&gt;
+&lt;assign id="common"&gt;
+    &lt;and&gt;
+        &lt;set&gt;&lt;int&gt;1&lt;/int&gt;&lt;int&gt;2&lt;/int&gt;&lt;int&gt;3&lt;/int&gt;&lt;/set&gt;
+        &lt;set&gt;&lt;int&gt;2&lt;/int&gt;&lt;int&gt;3&lt;/int&gt;&lt;int&gt;4&lt;/int&gt;&lt;/set&gt;
+    &lt;/and&gt;
+&lt;/assign&gt;
+&lt;!-- Result: {2, 3} --&gt;
+    </div>
+
+    <h3>Dictionary Removal</h3>
+    <div class="code">
+&lt;assign id="dict"&gt;
+    &lt;dict&gt;
+        &lt;pair&gt;&lt;str&gt;name&lt;/str&gt;&lt;str&gt;Gameline&lt;/str&gt;&lt;/pair&gt;
+        &lt;pair&gt;&lt;str&gt;age&lt;/str&gt;&lt;int&gt;25&lt;/int&gt;&lt;/pair&gt;
+    &lt;/dict&gt;
+&lt;/assign&gt;
+
+&lt;!-- Remove a key-value pair --&gt;
+&lt;assign id="without_age"&gt;
+    &lt;sub&gt;
+        &lt;access id="dict"/&gt;
+        &lt;str&gt;age&lt;/str&gt;
+    &lt;/sub&gt;
+&lt;/assign&gt;
+    </div>
+
+    <h3>Comparisons</h3>
+    <div class="code">
+&lt;if&gt;
+    &lt;eq&gt;
+        &lt;access id="user_role"/&gt;
+        &lt;str&gt;admin&lt;/str&gt;
+    &lt;/eq&gt;
+    &lt;call id="println"&gt;&lt;str&gt;Welcome, admin!&lt;/str&gt;&lt;/call&gt;
+    &lt;call id="println"&gt;&lt;str&gt;Access denied&lt;/str&gt;&lt;/call&gt;
+&lt;/if&gt;
+    </div>
+
+    <h3>Bitwise Operations</h3>
+    <div class="code">
+    &lt;program&gt;
+        &lt;import id="!std"/&gt;
+        
+        &lt;!-- Use decimal integers instead --&gt;
+        &lt;assign id="flags"&gt;
+            &lt;or&gt;
+                &lt;int&gt;1&lt;/int&gt;    &lt;!-- 0b0001 --&gt;
+                &lt;int&gt;2&lt;/int&gt;    &lt;!-- 0b0010 --&gt;
+            &lt;/or&gt;
+        &lt;/assign&gt;
+        &lt;!-- Result: 3 (0b0011) --&gt;
+
+        &lt;assign id="has_flag"&gt;
+            &lt;eq&gt;
+                &lt;and&gt;
+                    &lt;access id="flags"/&gt;
+                    &lt;int&gt;1&lt;/int&gt;    &lt;!-- 0b0001 --&gt;
+                &lt;/and&gt;
+                &lt;int&gt;1&lt;/int&gt;
+            &lt;/eq&gt;
+        &lt;/assign&gt;
+
+        &lt;call id="println"&gt;
+            &lt;access id="has_flag"/&gt;
+        &lt;/call&gt;
+    &lt;/program&gt;
+</div>
+
+    <div class="note">
+        <strong>Note:</strong> For flat array concatenation, use the <code>concat</code> function from the Standard Library instead of <code>&lt;add&gt;</code>.
+    </div>
+
+</div>
+
+<div id="footer-placeholder"></div>
+
+</body>
+</html>
