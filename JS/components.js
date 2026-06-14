@@ -20,8 +20,8 @@ class ComponentLoader {
 // Auto-load components when DOM is ready
 document.addEventListener('DOMContentLoaded', async () => {
     await ComponentLoader.loadAll([
-        { selector: '#sidebar-placeholder', path: '/COMPONENTS/sidebar.html' },
-        { selector: '#header-placeholder', path: '/COMPONENTS/header.html' },
-        { selector: '#footer-placeholder', path: '/COMPONENTS/footer.html' }
+        { selector: '#sidebar-placeholder', path: './COMPONENTS/sidebar.html' },
+        { selector: '#header-placeholder', path: './COMPONENTS/header.html' },
+        { selector: '#footer-placeholder', path: './COMPONENTS/footer.html' }
     ]);
 });
