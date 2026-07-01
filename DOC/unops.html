@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>XMLang EE Documentation - Unary Operators</title>
+    <link rel="stylesheet" href="https://cdn.metroui.org.ua/current/metro.css">
+    <link rel="stylesheet" href="../CSS/styles.css">
+    <link rel="stylesheet" href="../CSS/docs/get-started.css">
+    <link rel="stylesheet" href="../CSS/docs/tags.css">
+    <link rel="stylesheet" href="../CSS/docs/docs.css">
+    <link rel="stylesheet" href="../CSS/components/sidebar.css">
+    <link rel="stylesheet" href="../CSS/components/note.css">
+    <link rel="stylesheet" href="../CSS/components/code.css">
+    <link rel="stylesheet" href="../CSS/components/colors.css">
+    <link rel="stylesheet" href="../CSS/components/footer.css">
+    <link rel="stylesheet" href="../CSS/components/header.css">
+    <link rel="stylesheet" href="../CSS/components/table.css">
+    <script src="https://cdn.metroui.org.ua/current/metro.js"></script>
+    <link rel="stylesheet" href="https://cdn.metroui.org.ua/current/icons.css">
+    <script src="../JS/components.js"></script>
+    <script src="../JS/escaper.js"></script>
+</head>
+<body>
+
+<div id="header-placeholder"></div>
+<div id="sidebar-placeholder"></div>
+
+<h1 class="mx-auto">UNARY OPERATORS</h1>
+
+<div class="mx-auto">
+    <text>
+        Unary operators are tags that take exactly one child and perform an operation on it.<br>
+        They are built-in language tags that operate directly on a single value.
+    </text>
+    <br>
+    <text>
+        Unary operators in XEE provide:
+        <ul>
+            <li>Negation (<code>neg</code>) — flips the sign of a number</li>
+            <li>Absolute value (<code>abs</code>) — returns the magnitude of a number</li>
+            <li>Bitwise NOT (<code>not</code>) — inverts bits of an integer or boolean</li>
+        </ul>
+    </text>
+
+    <div class="note">
+        <strong>Note:</strong> Unary operators are tags, not function calls. They take exactly one child element.
+    </div>
+
+    <h2>Operator Reference</h2>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Tag</th>
+                <th>Operation</th>
+                <th>Input Types</th>
+                <th>Result</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td><code>&lt;neg&gt;</code></td>
+                <td>-x</td>
+                <td>Integer, Float</td>
+                <td>Same type as input</td>
+                <td>Negates the value (flips the sign).<br>
+                <code>5</code> → <code>-5</code><br>
+                <code>-3.14</code> → <code>3.14</code></td>
+            </tr>
+            <tr>
+                <td><code>&lt;abs&gt;</code></td>
+                <td>|x|</td>
+                <td>Integer, Float</td>
+                <td>Same type as input</td>
+                <td>Returns the absolute value (magnitude).<br>
+                <code>-5</code> → <code>5</code><br>
+                <code>3.14</code> → <code>3.14</code></td>
+            </tr>
+            <tr>
+                <td><code>&lt;not&gt;</code></td>
+                <td>~x or !x</td>
+                <td>Integer, Boolean</td>
+                <td>Integer or Boolean</td>
+                <td>Bitwise NOT for integers.<br>
+                Logical NOT for booleans.<br>
+                <code>5</code> → <code>-6</code> (bitwise)<br>
+                <code>true</code> → <code>false</code></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Examples</h2>
+
+    <h3>Negation (<code>neg</code>)</h3>
+    <div class="code">
+&lt;assign id="positive"&gt;
+    &lt;neg&gt;
+        &lt;int&gt;-5&lt;/int&gt;
+    &lt;/neg&gt;
+&lt;/assign&gt;
+&lt;!-- Result: 5 --&gt;
+
+&lt;assign id="negative"&gt;
+    &lt;neg&gt;
+        &lt;float&gt;3.14&lt;/float&gt;
+    &lt;/neg&gt;
+&lt;/assign&gt;
+&lt;!-- Result: -3.14 --&gt;
+    </div>
+
+    <h3>Absolute Value (<code>abs</code>)</h3>
+    <div class="code">
+&lt;assign id="distance"&gt;
+    &lt;abs&gt;
+        &lt;int&gt;-42&lt;/int&gt;
+    &lt;/abs&gt;
+&lt;/assign&gt;
+&lt;!-- Result: 42 --&gt;
+
+&lt;assign id="magnitude"&gt;
+    &lt;abs&gt;
+        &lt;float&gt;-3.14159&lt;/float&gt;
+    &lt;/abs&gt;
+&lt;/assign&gt;
+&lt;!-- Result: 3.14159 --&gt;
+    </div>
+
+    <h3>Bitwise/Logical NOT (<code>not</code>)</h3>
+    <div class="code">
+&lt;!-- Bitwise NOT on integer --&gt;
+&lt;assign id="inverted_bits"&gt;
+    &lt;not&gt;
+        &lt;int&gt;5&lt;/int&gt;
+    &lt;/not&gt;
+&lt;/assign&gt;
+&lt;!-- Result: -6 (two's complement) --&gt;
+
+&lt;!-- Logical NOT on boolean --&gt;
+&lt;assign id="is_not_admin"&gt;
+    &lt;not&gt;
+        &lt;bool&gt;true&lt;/bool&gt;
+    &lt;/not&gt;
+&lt;/assign&gt;
+&lt;!-- Result: false --&gt;
+    </div>
+
+    <h3>Combined Example</h3>
+    <div class="code">
+&lt;!-- Get absolute value of a negative number --&gt;
+&lt;assign id="safe_value"&gt;
+    &lt;abs&gt;
+        &lt;neg&gt;
+            &lt;int&gt;100&lt;/int&gt;
+        &lt;/neg&gt;
+    &lt;/abs&gt;
+&lt;/assign&gt;
+&lt;!-- Result: 100 --&gt;
+
+&lt;!-- Check if something is NOT true --&gt;
+&lt;if&gt;
+    &lt;not&gt;
+        &lt;access id="is_admin"/&gt;
+    &lt;/not&gt;
+    &lt;call id="println"&gt;&lt;str&gt;You are not an admin&lt;/str&gt;&lt;/call&gt;
+    &lt;call id="println"&gt;&lt;str&gt;Welcome, admin!&lt;/str&gt;&lt;/call&gt;
+&lt;/if&gt;
+    </div>
+
+    <div class="note">
+        <strong>Note:</strong> The <code>not</code> operator performs a bitwise NOT on integers <br> and a logical NOT on booleans.
+        For integers, <code>~5 = -6</code> (all bits inverted).<br> To negate the sign, use the <code>neg</code> tag
+    </div>
+
+    <div class="note note-warning">
+        <strong>Warning:</strong> All unary operators require exactly one child. <br> Providing more than one child will result in a runtime error.
+    </div>
+
+</div>
+
+<div id="footer-placeholder"></div>
+
+</body>
+</html>

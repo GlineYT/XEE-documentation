@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>XMLang EE Documentation - Functions</title>
+    <link rel="stylesheet" href="https://cdn.metroui.org.ua/current/metro.css">
+    <link rel="stylesheet" href="../CSS/styles.css">
+    <link rel="stylesheet" href="../CSS/docs/get-started.css">
+    <link rel="stylesheet" href="../CSS/docs/tags.css">
+    <link rel="stylesheet" href="../CSS/docs/docs.css">
+    <link rel="stylesheet" href="../CSS/components/sidebar.css">
+    <link rel="stylesheet" href="../CSS/components/note.css">
+    <link rel="stylesheet" href="../CSS/components/code.css">
+    <link rel="stylesheet" href="../CSS/components/colors.css">
+    <link rel="stylesheet" href="../CSS/components/footer.css">
+    <link rel="stylesheet" href="../CSS/components/header.css">
+    <link rel="stylesheet" href="../CSS/components/table.css">
+    <script src="https://cdn.metroui.org.ua/current/metro.js"></script>
+    <link rel="stylesheet" href="https://cdn.metroui.org.ua/current/icons.css">
+    <script src="../JS/components.js"></script>
+    <script src="../JS/escaper.js"></script>
+</head>
+<body>
+
+<div id="header-placeholder"></div>
+<div id="sidebar-placeholder"></div>
+
+<h1 class="mx-auto">FUNCTIONS</h1>
+
+<div class="mx-auto">
+    <text>
+        Functions in XEE are defined using the <code>&lt;func&gt;</code> tag and called using the <code>&lt;call&gt;</code> tag.
+    </text>
+    <br>
+    <text>
+        Functions in XEE provide:
+        <ul>
+            <li>Named blocks of reusable code</li>
+            <li>Positional arguments (order matters)</li>
+            <li>Pure functional behavior (no side effects)</li>
+            <li>First-class functions (functions are variables)</li>
+            <li>Anonymous functions (functions without a name)</li>
+        </ul>
+    </text>
+
+    <div class="note">
+        <strong>Key Point:</strong> Functions in XEE are <strong>pure</strong> <br> Meaning they cannot modify variables outside their own scope.<br>
+        They only operate on their arguments and return a value.
+    </div>
+
+    <h2>Defining Functions</h2>
+
+    <h3>Basic Syntax</h3>
+    <div class="code">
+&lt;func id="function_name"&gt;
+    &lt;args&gt;                     &lt;!-- Argument definitions --&gt;
+        &lt;arg id="arg1"/&gt;       &lt;!-- First argument --&gt;
+        &lt;arg id="arg2"/&gt;       &lt;!-- Second argument --&gt;
+        &lt;arg id="arg3"/&gt;       &lt;!-- Third argument --&gt;
+    &lt;/args&gt;
+    &lt;block&gt;                     &lt;!-- Function body --&gt;
+        &lt;!-- Code that executes when called --&gt;
+        &lt;!-- The last expression is returned --&gt;
+    &lt;/block&gt;
+&lt;/func&gt;
+    </div>
+
+    <h3>Function with No Arguments</h3>
+    <div class="code">
+&lt;func id="greet"&gt;
+    &lt;args/&gt;                    &lt;!-- Empty args = no arguments --&gt;
+    &lt;block&gt;
+        &lt;str&gt;Hello, world!&lt;/str&gt;
+    &lt;/block&gt;
+&lt;/func&gt;
+    </div>
+
+    <h3>Function with Arguments</h3>
+    <div class="code">
+&lt;func id="add"&gt;
+    &lt;args&gt;
+        &lt;arg id="a"/&gt;
+        &lt;arg id="b"/&gt;
+    &lt;/args&gt;
+    &lt;block&gt;
+        &lt;add&gt;
+            &lt;access id="a"/&gt;
+            &lt;access id="b"/&gt;
+        &lt;/add&gt;
+    &lt;/block&gt;
+&lt;/func&gt;
+    </div>
+
+    <h3>Returning a Value</h3>
+    <text>
+        The <strong>last expression</strong> in the function body is automatically returned.<br>
+        You can also use <code>&lt;return&gt;</code> to explicitly return a value.
+    </text>
+
+    <div class="code">
+&lt;func id="max"&gt;
+    &lt;args&gt;&lt;arg id="a"/&gt;&lt;arg id="b"/&gt;&lt;/args&gt;
+    &lt;block&gt;
+        &lt;if&gt;
+            &lt;gt&gt;&lt;access id="a"/&gt;&lt;access id="b"/&gt;&lt;/gt&gt;
+            &lt;access id="a"/&gt;          &lt;!-- Return a --&gt;
+            &lt;access id="b"/&gt;          &lt;!-- Return b --&gt;
+        &lt;/if&gt;
+    &lt;/block&gt;
+&lt;/func&gt;
+    </div>
+
+    <h2>Calling Functions</h2>
+
+    <h3>Basic Syntax</h3>
+    <text>
+        Functions are called using the <code>&lt;call&gt;</code> tag with an <code>id</code> attribute.<br>
+        Arguments are passed as children in the order they are defined.
+    </text>
+
+    <div class="code">
+&lt;call id="function_name"&gt;
+    &lt;arg1_value/&gt;          &lt;!-- First argument --&gt;
+    &lt;arg2_value/&gt;          &lt;!-- Second argument --&gt;
+    &lt;arg3_value/&gt;          &lt;!-- Third argument --&gt;
+&lt;/call&gt;
+    </div>
+
+    <h3>Calling with No Arguments</h3>
+    <div class="code">
+&lt;call id="flush"/&gt;        &lt;!-- Self-closing — no arguments --&gt;
+    </div>
+
+    <h3>Calling with Arguments</h3>
+    <div class="code">
+&lt;assign id="result"&gt;
+    &lt;call id="add"&gt;
+        &lt;int&gt;5&lt;/int&gt;          &lt;!-- a = 5 --&gt;
+        &lt;int&gt;3&lt;/int&gt;          &lt;!-- b = 3 --&gt;
+    &lt;/call&gt;
+&lt;/assign&gt;
+&lt;!-- result = 8 --&gt;
+    </div>
+
+    <h3>Calling with Mixed Types</h3>
+    <div class="code">
+&lt;call id="greet_user"&gt;
+    &lt;str&gt;Alice&lt;/str&gt;          &lt;!-- String argument --&gt;
+    &lt;int&gt;30&lt;/int&gt;             &lt;!-- Integer argument --&gt;
+    &lt;bool&gt;true&lt;/bool&gt;         &lt;!-- Boolean argument --&gt;
+&lt;/call&gt;
+    </div>
+
+    <h2>Argument Passing</h2>
+
+    <text>
+        Arguments in XEE are <strong>positional</strong> — the order they are passed in must match<br>
+        the order they are defined in the <code>&lt;args&gt;</code> block.
+    </text>
+
+    <div class="note note-warning">
+        <strong>Important:</strong> The order of arguments matters.<br>
+        Passing arguments in the wrong order will produce incorrect results or errors.
+    </div>
+
+    <div class="code">
+&lt;!-- Function defined with two arguments --&gt;
+&lt;func id="divide"&gt;
+    &lt;args&gt;
+        &lt;arg id="numerator"/&gt;    &lt;!-- First argument --&gt;
+        &lt;arg id="denominator"/&gt;  &lt;!-- Second argument --&gt;
+    &lt;/args&gt;
+    &lt;block&gt;
+        &lt;div&gt;
+            &lt;access id="numerator"/&gt;
+            &lt;access id="denominator"/&gt;
+        &lt;/div&gt;
+    &lt;/block&gt;
+&lt;/func&gt;
+
+&lt;!-- Correct call: numerator=10, denominator=2 --&gt;
+&lt;call id="divide"&gt;
+    &lt;int&gt;10&lt;/int&gt;
+    &lt;int&gt;2&lt;/int&gt;
+&lt;/call&gt;
+&lt;!-- Result: 5 --&gt;
+
+&lt;!-- Incorrect call: numerator=2, denominator=10 --&gt;
+&lt;call id="divide"&gt;
+    &lt;int&gt;2&lt;/int&gt;
+    &lt;int&gt;10&lt;/int&gt;
+&lt;/call&gt;
+&lt;!-- Result: 0 (wrong!) --&gt;
+    </div>
+
+    <h2>Pure Functions</h2>
+
+    <text>
+        Functions in XEE are <strong>pure</strong> — they cannot modify variables outside their scope.<br>
+    </text>
+
+    <div class="code">
+&lt;assign id="x"&gt;&lt;int&gt;10&lt;/int&gt;&lt;/assign&gt;
+
+&lt;func id="try_modify"&gt;
+    &lt;args&gt;&lt;arg id="val"/&gt;&lt;/args&gt;
+    &lt;block&gt;
+        &lt;assign id="x"&gt;&lt;int&gt;999&lt;/int&gt;&lt;/assign&gt;  &lt;!-- This is a NEW variable in the function scope --&gt;
+        &lt;add&gt;&lt;access id="val"/&gt;&lt;int&gt;5&lt;/int&gt;&lt;/add&gt;
+    &lt;/block&gt;
+&lt;/func&gt;
+
+&lt;call id="try_modify"&gt;&lt;int&gt;20&lt;/int&gt;&lt;/call&gt;
+&lt;!-- x is STILL 10 — the function did not modify the outer variable --&gt;
+    </div>
+
+    <div class="note">
+        <strong>Note:</strong> This pure functional behavior means functions have no side effects.<br>
+        To change state, you must explicitly return values and reassign them.
+    </div>
+
+    <h2>Anonymous Functions</h2>
+
+    <text>
+        Functions can be defined without an <code>id</code>, creating an anonymous function.<br>
+        These are useful for temporary operations or when passing functions as arguments.
+    </text>
+
+    <div class="code">
+&lt;!-- Anonymous function assigned to a variable --&gt;
+&lt;assign id="multiplier"&gt;
+    &lt;func&gt;
+        &lt;args&gt;&lt;arg id="x"/&gt;&lt;arg id="y"/&gt;&lt;/args&gt;
+        &lt;block&gt;
+            &lt;mul&gt;&lt;access id="x"/&gt;&lt;access id="y"/&gt;&lt;/mul&gt;
+        &lt;/block&gt;
+    &lt;/func&gt;
+&lt;/assign&gt;
+
+&lt;call id="multiplier"&gt;
+    &lt;int&gt;4&lt;/int&gt;
+    &lt;int&gt;7&lt;/int&gt;
+&lt;/call&gt;
+&lt;!-- Result: 28 --&gt;
+    </div>
+
+    <h2>Functions as Variables</h2>
+
+    <text>
+        Functions are first-class citizens in XEE. They can be assigned to: <br>. variables
+        passed as arguments <br> returned from other functions.
+    </text>
+
+    <div class="code">
+&lt;!-- Define a function --&gt;
+&lt;func id="add_one"&gt;
+    &lt;args&gt;&lt;arg id="x"/&gt;&lt;/args&gt;
+    &lt;block&gt;
+        &lt;add&gt;&lt;access id="x"/&gt;&lt;int&gt;1&lt;/int&gt;&lt;/add&gt;
+    &lt;/block&gt;
+&lt;/func&gt;
+
+&lt;!-- Assign the function to another variable --&gt;
+&lt;assign id="increment"&gt;
+    &lt;access id="add_one"/&gt;
+&lt;/assign&gt;
+
+&lt;!-- Call the function through the new variable --&gt;
+&lt;call id="increment"&gt;
+    &lt;int&gt;5&lt;/int&gt;
+&lt;/call&gt;
+&lt;!-- Result: 6 --&gt;
+    </div>
+
+    <h2>Public Functions</h2>
+
+    <text>
+        Functions can be made public using the <code>&lt;public&gt;</code> tag.
+    </text>
+
+    <div class="code">
+&lt;!-- file: utils.xee --&gt;
+&lt;func id="double"&gt;
+    &lt;args&gt;&lt;arg id="x"/&gt;&lt;/args&gt;
+    &lt;block&gt;
+        &lt;mul&gt;&lt;access id="x"/&gt;&lt;int&gt;2&lt;/int&gt;&lt;/mul&gt;
+    &lt;/block&gt;
+&lt;/func&gt;
+&lt;public id="double"/&gt;  &lt;!-- double is now public --&gt;
+
+&lt;!-- file: main.xee --&gt;
+&lt;import id="utils.xee"/&gt;
+
+&lt;call id="double"&gt;&lt;int&gt;5&lt;/int&gt;&lt;/call&gt;
+&lt;!-- Result: 10 --&gt;
+    </div>
+
+    <h2>Best Practices</h2>
+
+    <ul>
+        <li><strong>Name functions clearly</strong> — use descriptive names that indicate what they do</li>
+        <li><strong>Keep functions small</strong> — a function should do one thing and do it well</li>
+        <li><strong>Use arguments</strong> — avoid relying on external variables (pure functions)</li>
+        <li><strong>Document functions</strong> — especially public ones that others will use</li>
+        <li><strong>Return values explicitly</strong> — use the last expression or <code>&lt;return&gt;</code></li>
+        <li><strong>Use anonymous functions</strong> for temporary or one-off operations</li>
+        <li><strong>Make functions public</strong> only when they need to be used from other files</li>
+    </ul>
+
+    <div class="note">
+        <strong>Note:</strong> More functions are in the library-specific documentation:
+        <ul>
+            <li><a href="stdlib.html">Standard Library</a></li>
+            <li><a href="mathlib.html">Math Library</a></li>
+            <li><a href="randlib.html">Random Library</a></li>
+            <li><a href="iolib.html">I/O Library</a></li>
+            <li><a href="cryptolib.html">Crypto Library</a></li>
+        </ul>
+    </div>
+
+</div>
+
+<div id="footer-placeholder"></div>
+
+</body>
+</html>

@@ -5,6 +5,10 @@ body {
    background-size: 200px 200px;
 }
 
+* {
+    border-radius: 0 !important;
+}
+
 h1,h2,h3,h4,h5,h6,p,li,text{
     color: #9c0049 !important;
     font-family: "Century Gothic Paneuropean";

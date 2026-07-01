@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>XMLang EE Documentation - Conditionals</title>
+    <link rel="stylesheet" href="https://cdn.metroui.org.ua/current/metro.css">
+    <link rel="stylesheet" href="../CSS/styles.css">
+    <link rel="stylesheet" href="../CSS/docs/get-started.css">
+    <link rel="stylesheet" href="../CSS/docs/tags.css">
+    <link rel="stylesheet" href="../CSS/docs/docs.css">
+    <link rel="stylesheet" href="../CSS/components/sidebar.css">
+    <link rel="stylesheet" href="../CSS/components/note.css">
+    <link rel="stylesheet" href="../CSS/components/code.css">
+    <link rel="stylesheet" href="../CSS/components/colors.css">
+    <link rel="stylesheet" href="../CSS/components/footer.css">
+    <link rel="stylesheet" href="../CSS/components/header.css">
+    <link rel="stylesheet" href="../CSS/components/table.css">
+    <script src="https://cdn.metroui.org.ua/current/metro.js"></script>
+    <link rel="stylesheet" href="https://cdn.metroui.org.ua/current/icons.css">
+    <script src="../JS/components.js"></script>
+    <script src="../JS/escaper.js"></script>
+</head>
+<body>
+
+<div id="header-placeholder"></div>
+<div id="sidebar-placeholder"></div>
+
+<h1 class="mx-auto">CONDITIONALS</h1>
+
+<div class="mx-auto">
+    <text>
+        XEE provides a single conditional construct: the <code>&lt;if&gt;</code> tag.
+        It is a 3-in-1 construct that combines: <br> <code>if</code> <br> <code>else if</code> <br> <code>else</code> <br> <code>switch</code> functionality.<br>
+    </text>
+
+    <text>
+        The <code>&lt;if&gt;</code> tag works as follows:
+        <ul>
+            <li>Children are paired as <strong>condition</strong> and <strong>expression</strong></li>
+            <li>For each pair, the condition is evaluated first</li>
+            <li>If the condition is true, the corresponding expression is executed and the <code>&lt;if&gt;</code> returns</li>
+            <li>If no condition is true and there is an odd number of children the last child is executed as an <strong>else</strong></li>
+        </ul>
+    </text>
+
+    <div class="note">
+        <strong>Key Point:</strong> There is no separate <code>else</code> or <code>else if</code> tag.<br>
+        The structure of the <code>&lt;if&gt;</code> tag itself provides this functionality.
+    </div>
+
+    <h2>Syntax</h2>
+
+    <h3>If (2 children)</h3>
+    <div class="code">
+&lt;if&gt;
+    &lt;condition/&gt;          &lt;!-- If true --&gt;
+    &lt;expression/&gt;          &lt;!-- Execute this --&gt;
+&lt;/if&gt;
+    </div>
+
+    <h3>If-Else (3 children)</h3>
+    <div class="code">
+&lt;if&gt;
+    &lt;condition/&gt;          &lt;!-- If true --&gt;
+    &lt;expression1/&gt;         &lt;!-- Execute this --&gt;
+    &lt;expression2/&gt;         &lt;!-- Else (odd child) --&gt;
+&lt;/if&gt;
+    </div>
+
+    <h3>If-Else If-Else (4+ children)</h3>
+    <div class="code">
+&lt;if&gt;
+    &lt;condition1/&gt;          &lt;!-- If true --&gt;
+    &lt;expression1/&gt;         &lt;!-- Execute this --&gt;
+    &lt;condition2/&gt;          &lt;!-- Else if true --&gt;
+    &lt;expression2/&gt;         &lt;!-- Execute this --&gt;
+    &lt;condition3/&gt;          &lt;!-- Else if true --&gt;
+    &lt;expression3/&gt;         &lt;!-- Execute this --&gt;
+    &lt;expression4 (else) /&gt;             &lt;!-- Else (odd child) --&gt;
+&lt;/if&gt;
+    </div>
+
+    <h2>Examples</h2>
+
+    <h3>Basic If (2 children)</h3>
+    <div class="code">
+&lt;assign id="value"&gt;&lt;int&gt;10&lt;/int&gt;&lt;/assign&gt;
+
+&lt;if&gt;
+    &lt;gt&gt;
+        &lt;access id="value"/&gt;
+        &lt;int&gt;5&lt;/int&gt;
+    &lt;/gt&gt;
+    &lt;call id="println"&gt;&lt;str&gt;Value is greater than 5&lt;/str&gt;&lt;/call&gt;
+&lt;/if&gt;
+    </div>
+
+    <h3>If-Else (3 children)</h3>
+    <div class="code">
+&lt;assign id="value"&gt;&lt;int&gt;3&lt;/int&gt;&lt;/assign&gt;
+
+&lt;if&gt;
+    &lt;gt&gt;
+        &lt;access id="value"/&gt;
+        &lt;int&gt;5&lt;/int&gt;
+    &lt;/gt&gt;
+    &lt;call id="println"&gt;&lt;str&gt;Value is greater than 5&lt;/str&gt;&lt;/call&gt;
+    &lt;call id="println"&gt;&lt;str&gt;Value is 5 or less&lt;/str&gt;&lt;/call&gt;
+&lt;/if&gt;
+    </div>
+
+    <h3>If-Else If-Else (4+ children)</h3>
+    <div class="code">
+&lt;assign id="score"&gt;&lt;int&gt;85&lt;/int&gt;&lt;/assign&gt;
+
+&lt;if&gt;
+    &lt;gt&gt;
+        &lt;access id="score"/&gt;
+        &lt;int&gt;90&lt;/int&gt;
+    &lt;/gt&gt;
+    &lt;call id="println"&gt;&lt;str&gt;Grade: A&lt;/str&gt;&lt;/call&gt;
+    
+    &lt;gt&gt;
+        &lt;access id="score"/&gt;
+        &lt;int&gt;80&lt;/int&gt;
+    &lt;/gt&gt;
+    &lt;call id="println"&gt;&lt;str&gt;Grade: B&lt;/str&gt;&lt;/call&gt;
+    
+    &lt;gt&gt;
+        &lt;access id="score"/&gt;
+        &lt;int&gt;70&lt;/int&gt;
+    &lt;/gt&gt;
+    &lt;call id="println"&gt;&lt;str&gt;Grade: C&lt;/str&gt;&lt;/call&gt;
+    
+    &lt;call id="println"&gt;&lt;str&gt;Grade: F&lt;/str&gt;&lt;/call&gt;
+&lt;/if&gt;
+    </div>
+
+    <h3>Switch-Case Pattern (Multiple Equality Checks)</h3>
+    <div class="code">
+&lt;assign id="command"&gt;&lt;str&gt;start&lt;/str&gt;&lt;/assign&gt;
+
+&lt;if&gt;
+    &lt;eq&gt;
+        &lt;access id="command"/&gt;
+        &lt;str&gt;start&lt;/str&gt;
+    &lt;/eq&gt;
+    &lt;call id="println"&gt;&lt;str&gt;Starting...&lt;/str&gt;&lt;/call&gt;
+    
+    &lt;eq&gt;
+        &lt;access id="command"/&gt;
+        &lt;str&gt;stop&lt;/str&gt;
+    &lt;/eq&gt;
+    &lt;call id="println"&gt;&lt;str&gt;Stopping...&lt;/str&gt;&lt;/call&gt;
+    
+    &lt;eq&gt;
+        &lt;access id="command"/&gt;
+        &lt;str&gt;status&lt;/str&gt;
+    &lt;/eq&gt;
+    &lt;call id="println"&gt;&lt;str&gt;Status: Running&lt;/str&gt;&lt;/call&gt;
+    
+    &lt;call id="println"&gt;&lt;str&gt;Unknown command&lt;/str&gt;&lt;/call&gt;
+&lt;/if&gt;
+    </div>
+
+
+
+    <div class="note note-warning">
+        <strong>Important:</strong> The <code>&lt;if&gt;</code> tag evaluates condition-expression pairs in order <br> and returns the first matching expression.<br>
+        Do NOT use multiple separate <code>&lt;if&gt;</code> tags as they will cause the function to return early.<br>
+        Use one <code>&lt;if&gt;</code> with multiple condition-expression pairs.
+    </div>
+
+</div>
+
+<div id="footer-placeholder"></div>
+
+</body>
+</html>

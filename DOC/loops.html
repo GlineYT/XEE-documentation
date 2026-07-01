@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>XMLang EE Documentation - Loops</title>
+    <link rel="stylesheet" href="https://cdn.metroui.org.ua/current/metro.css">
+    <link rel="stylesheet" href="../CSS/styles.css">
+    <link rel="stylesheet" href="../CSS/docs/get-started.css">
+    <link rel="stylesheet" href="../CSS/docs/tags.css">
+    <link rel="stylesheet" href="../CSS/docs/docs.css">
+    <link rel="stylesheet" href="../CSS/components/sidebar.css">
+    <link rel="stylesheet" href="../CSS/components/note.css">
+    <link rel="stylesheet" href="../CSS/components/code.css">
+    <link rel="stylesheet" href="../CSS/components/colors.css">
+    <link rel="stylesheet" href="../CSS/components/footer.css">
+    <link rel="stylesheet" href="../CSS/components/header.css">
+    <link rel="stylesheet" href="../CSS/components/table.css">
+    <script src="https://cdn.metroui.org.ua/current/metro.js"></script>
+    <link rel="stylesheet" href="https://cdn.metroui.org.ua/current/icons.css">
+    <script src="../JS/components.js"></script>
+    <script src="../JS/escaper.js"></script>
+</head>
+<body>
+
+<div id="header-placeholder"></div>
+<div id="sidebar-placeholder"></div>
+
+<h1 class="mx-auto">LOOPS</h1>
+
+<div class="mx-auto">
+    <text>
+        XEE provides two types of loops: <code>&lt;for&gt;</code> and <code>&lt;while&gt;</code>.<br>
+        Both are essential for iteration and repetition in your programs.
+    </text>
+
+    <text>
+        Loops in XEE offer:
+        <ul>
+            <li><code>for</code> — iterates over arrays, strings, ranges, and dictionaries</li>
+            <li><code>while</code> — repeats a block while a condition is true</li>
+            <li><code>break</code> and <code>continue</code> — control flow inside loops</li>
+        </ul>
+    </text>
+
+    <h2>FOR LOOP</h2>
+
+    <text>
+        The <code>&lt;for&gt;</code> tag iterates through an indexable object.<br> It takes two children:
+        <br>the indexable object <br> a block of code to execute for each iteration.
+    </text>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Tag</th>
+                <th>Children</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td><code>&lt;for&gt;</code></td>
+                <td>2</td>
+                <td>
+                    Iterates through an indexable object.<br>
+                    If given an integer, iterates from 0 to that number (exclusive).<br>
+                    A variable with the set ID is created for each iteration.<br>
+                    The variable persists after the loop ends.
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Syntax</h3>
+    <div class="code">
+&lt;for id="item"&gt;
+    &lt;access id="iterable"/&gt;  &lt;!-- First child: the indexable object --&gt;
+    &lt;block&gt;                    &lt;!-- Second child: the loop body --&gt;
+        &lt;call id="println"&gt;&lt;access id="item"/&gt;&lt;/call&gt;
+    &lt;/block&gt;
+&lt;/for&gt;
+    </div>
+
+    <h3>Examples</h3>
+
+    <h4>Iterating over an Array</h4>
+    <div class="code">
+&lt;assign id="fruits"&gt;
+    &lt;arr&gt;
+        &lt;str&gt;apple&lt;/str&gt;
+        &lt;str&gt;banana&lt;/str&gt;
+        &lt;str&gt;cherry&lt;/str&gt;
+    &lt;/arr&gt;
+&lt;/assign&gt;
+
+&lt;for id="fruit"&gt;
+    &lt;access id="fruits"/&gt;
+    &lt;block&gt;
+        &lt;call id="println"&gt;&lt;access id="fruit"/&gt;&lt;/call&gt;
+    &lt;/block&gt;
+&lt;/for&gt;
+    </div>
+
+    <h4>Iterating over a Range (Integer)</h4>
+    <div class="code">
+&lt;for id="i"&gt;
+    &lt;int&gt;5&lt;/int&gt;  &lt;!-- 0, 1, 2, 3, 4 --&gt;
+    &lt;block&gt;
+        &lt;call id="println"&gt;
+            &lt;call id="join"&gt;
+                &lt;arr&gt;
+                    &lt;str&gt;Iteration: &lt;/str&gt;
+                    &lt;access id="i"/&gt;
+                &lt;/arr&gt;
+            &lt;/call&gt;
+        &lt;/call&gt;
+    &lt;/block&gt;
+&lt;/for&gt;
+    </div>
+
+    <h4>Iterating over a Dictionary (Keys)</h4>
+    <div class="code">
+&lt;assign id="user"&gt;
+    &lt;dict&gt;
+        &lt;pair&gt;&lt;str&gt;name&lt;/str&gt;&lt;str&gt;Gameline&lt;/str&gt;&lt;/pair&gt;
+        &lt;pair&gt;&lt;str&gt;age&lt;/str&gt;&lt;int&gt;25&lt;/int&gt;&lt;/pair&gt;
+    &lt;/dict&gt;
+&lt;/assign&gt;
+
+&lt;for id="key"&gt;
+    &lt;access id="user"/&gt;
+    &lt;block&gt;
+        &lt;call id="println"&gt;
+            &lt;call id="join"&gt;
+                &lt;arr&gt;
+                    &lt;access id="key"/&gt;
+                    &lt;str&gt;: &lt;/str&gt;
+                    &lt;access id="user"&gt;
+                        &lt;access id="key"/&gt;
+                    &lt;/access&gt;
+                &lt;/arr&gt;
+            &lt;/call&gt;
+        &lt;/call&gt;
+    &lt;/block&gt;
+&lt;/for&gt;
+    </div>
+
+    <h4>Nested For Loops</h4>
+    <div class="code">
+&lt;for id="i"&gt;
+    &lt;int&gt;3&lt;/int&gt;
+    &lt;block&gt;
+        &lt;for id="j"&gt;
+            &lt;int&gt;3&lt;/int&gt;
+            &lt;block&gt;
+                &lt;assign id="coord"&gt;
+                    &lt;call id="join"&gt;
+                        &lt;arr&gt;
+                            &lt;str&gt;(&lt;/str&gt;
+                            &lt;access id="i"/&gt;
+                            &lt;str&gt;, &lt;/str&gt;
+                            &lt;access id="j"/&gt;
+                            &lt;str&gt;)&lt;/str&gt;
+                        &lt;/arr&gt;
+                    &lt;/call&gt;
+                &lt;/assign&gt;
+                &lt;call id="println"&gt;&lt;access id="coord"/&gt;&lt;/call&gt;
+            &lt;/block&gt;
+        &lt;/for&gt;
+    &lt;/block&gt;
+&lt;/for&gt;
+    </div>
+
+    <div class="note">
+        <strong>Note:</strong> The loop variable persists after the loop ends. <br> It holds the last value from the iteration.
+    </div>
+
+    <h2>WHILE LOOP</h2>
+
+    <text>
+        The <code>&lt;while&gt;</code> tag keeps looping the second child (the body) <br> until the first child (the condition) returns <code>false</code>.<br>
+    </text>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Tag</th>
+                <th>Children</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td><code>&lt;while&gt;</code></td>
+                <td>2</td>
+                <td>
+                    Keeps looping the second child until the first child returns false. <br>
+                    The condition is evaluated before each iteration.
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Syntax</h3>
+    <div class="code">
+&lt;while&gt;
+    &lt;condition/&gt;          &lt;!-- First child: evaluated each iteration --&gt;
+    &lt;block&gt;                 &lt;!-- Second child: executed while condition is true --&gt;
+        &lt;!-- loop body --&gt;
+    &lt;/block&gt;
+&lt;/while&gt;
+    </div>
+
+    <h3>Examples</h3>
+
+    <h4>Basic Counter</h4>
+    <div class="code">
+&lt;assign id="count"&gt;&lt;int&gt;0&lt;/int&gt;&lt;/assign&gt;
+
+&lt;while&gt;
+    &lt;lt&gt;
+        &lt;access id="count"/&gt;
+        &lt;int&gt;5&lt;/int&gt;
+    &lt;/lt&gt;
+    &lt;block&gt;
+        &lt;call id="println"&gt;&lt;access id="count"/&gt;&lt;/call&gt;
+        &lt;assign id="count"&gt;
+            &lt;add&gt;
+                &lt;access id="count"/&gt;
+                &lt;int&gt;1&lt;/int&gt;
+            &lt;/add&gt;
+        &lt;/assign&gt;
+    &lt;/block&gt;
+&lt;/while&gt;
+    </div>
+
+    <h4>Countdown</h4>
+    <div class="code">
+&lt;assign id="countdown"&gt;&lt;int&gt;5&lt;/int&gt;&lt;/assign&gt;
+
+&lt;while&gt;
+    &lt;gt&gt;
+        &lt;access id="countdown"/&gt;
+        &lt;int&gt;0&lt;/int&gt;
+    &lt;/gt&gt;
+    &lt;block&gt;
+        &lt;call id="println"&gt;&lt;access id="countdown"/&gt;&lt;/call&gt;
+        &lt;assign id="countdown"&gt;
+            &lt;sub&gt;
+                &lt;access id="countdown"/&gt;
+                &lt;int&gt;1&lt;/int&gt;
+            &lt;/sub&gt;
+        &lt;/assign&gt;
+    &lt;/block&gt;
+&lt;/while&gt;
+    </div>
+
+    <h4>Array Iteration with While</h4>
+    <div class="code">
+&lt;assign id="fruits"&gt;
+    &lt;arr&gt;
+        &lt;str&gt;apple&lt;/str&gt;
+        &lt;str&gt;banana&lt;/str&gt;
+        &lt;str&gt;cherry&lt;/str&gt;
+    &lt;/arr&gt;
+&lt;/assign&gt;
+
+&lt;assign id="idx"&gt;&lt;int&gt;0&lt;/int&gt;&lt;/assign&gt;
+&lt;assign id="len"&gt;
+    &lt;call id="len"&gt;&lt;access id="fruits"/&gt;&lt;/call&gt;
+&lt;/assign&gt;
+
+&lt;while&gt;
+    &lt;lt&gt;
+        &lt;access id="idx"/&gt;
+        &lt;access id="len"/&gt;
+    &lt;/lt&gt;
+    &lt;block&gt;
+        &lt;assign id="fruit"&gt;
+            &lt;access id="fruits"&gt;
+                &lt;access id="idx"/&gt;
+            &lt;/access&gt;
+        &lt;/assign&gt;
+        &lt;call id="println"&gt;&lt;access id="fruit"/&gt;&lt;/call&gt;
+        &lt;assign id="idx"&gt;
+            &lt;add&gt;
+                &lt;access id="idx"/&gt;
+                &lt;int&gt;1&lt;/int&gt;
+            &lt;/add&gt;
+        &lt;/assign&gt;
+    &lt;/block&gt;
+&lt;/while&gt;
+    </div>
+
+    <h2>BREAK AND CONTINUE</h2>
+
+    <text>
+        XEE supports <code>&lt;break/&gt;</code> and <code>&lt;continue/&gt;</code> tags for controlling loop execution.
+    </text>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Tag</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td><code>&lt;break/&gt;</code></td>
+                <td>Exits the current loop immediately.</td>
+            </tr>
+            <tr>
+                <td><code>&lt;continue/&gt;</code></td>
+                <td>Skips the rest of the current iteration and jumps to the next.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Example</h3>
+    <div class="code">
+&lt;!-- Print numbers 0 to 9, skip 5, stop at 8 --&gt;
+&lt;for id="i"&gt;
+    &lt;int&gt;10&lt;/int&gt;
+    &lt;block&gt;
+        &lt;if&gt;
+            &lt;eq&gt;&lt;access id="i"/&gt;&lt;int&gt;5&lt;/int&gt;&lt;/eq&gt;
+            &lt;continue/&gt;
+        &lt;/if&gt;
+        &lt;if&gt;
+            &lt;eq&gt;&lt;access id="i"/&gt;&lt;int&gt;8&lt;/int&gt;&lt;/eq&gt;
+            &lt;break/&gt;
+        &lt;/if&gt;
+        &lt;call id="println"&gt;&lt;access id="i"/&gt;&lt;/call&gt;
+    &lt;/block&gt;
+&lt;/for&gt;
+&lt;!-- Output: 0 1 2 3 4 6 7 --&gt;
+    </div>
+
+    <div class="note">
+        <strong>Note:</strong> The <code>&lt;break/&gt;</code> and <code>&lt;continue/&gt;</code> tags are self-closing and have no children.
+    </div>
+
+    <div class="note note-warning">
+        <strong>Warning:</strong> When incrementing a counter in a <code>&lt;while&gt;</code> loop, always use <code>&lt;add&gt;</code> <br> (not <code>join</code>) to keep values as integers.
+    </div>
+
+</div>
+
+<div id="footer-placeholder"></div>
+
+</body>
+</html>

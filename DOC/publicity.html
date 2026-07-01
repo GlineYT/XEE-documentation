@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>XMLang EE Documentation - Publicity & Privacy</title>
+    <link rel="stylesheet" href="https://cdn.metroui.org.ua/current/metro.css">
+    <link rel="stylesheet" href="../CSS/styles.css">
+    <link rel="stylesheet" href="../CSS/docs/get-started.css">
+    <link rel="stylesheet" href="../CSS/docs/tags.css">
+    <link rel="stylesheet" href="../CSS/docs/docs.css">
+    <link rel="stylesheet" href="../CSS/components/sidebar.css">
+    <link rel="stylesheet" href="../CSS/components/note.css">
+    <link rel="stylesheet" href="../CSS/components/code.css">
+    <link rel="stylesheet" href="../CSS/components/colors.css">
+    <link rel="stylesheet" href="../CSS/components/footer.css">
+    <link rel="stylesheet" href="../CSS/components/header.css">
+    <link rel="stylesheet" href="../CSS/components/table.css">
+    <script src="https://cdn.metroui.org.ua/current/metro.js"></script>
+    <link rel="stylesheet" href="https://cdn.metroui.org.ua/current/icons.css">
+    <script src="../JS/components.js"></script>
+    <script src="../JS/escaper.js"></script>
+</head>
+<body>
+
+<div id="header-placeholder"></div>
+<div id="sidebar-placeholder"></div>
+
+<h1 class="mx-auto">PUBLICITY & PRIVACY</h1>
+
+<div class="mx-auto">
+    <text>
+        XEE provides a module system based on file imports and variable visibility.<br>
+        By default, all variables are <strong>private</strong> to the file they are defined in.<br>
+        The <code>&lt;public&gt;</code> tag is used to explicitly expose variables to other files.
+    </text>
+    <br><br>
+    <text>
+        The publicity system in XEE provides:
+        <ul>
+            <li><code>&lt;import&gt;</code> — imports variables from other files or built-in libraries</li>
+            <li><code>&lt;public&gt;</code> — exposes a variable to other files</li>
+            <li>By default, variables are <strong>private</strong> (encapsulated)</li>
+            <li>Functions are variables too — they can be made public or kept private</li>
+            <li>No namespaces — public variables are added directly to the scope</li>
+        </ul>
+    </text>
+
+    <div class="note">
+        <strong>Key Point:</strong> Variables are <strong>private by default</strong>.<br>
+        You must explicitly mark them as <code>&lt;public&gt;</code> to make them accessible from other files.
+    </div>
+
+    <h2>Tags Reference</h2>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Tag</th>
+                <th>Children</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td><code>&lt;import&gt;</code></td>
+                <td>0 (self-closing)</td>
+                <td>
+                    Imports a file or built-in library.<br>
+                    Built-in libraries are prefixed with <code>!</code> (e.g., <code>!std</code>).<br>
+                    All <strong>public</strong> variables from the imported file are added to the current scope.
+                </td>
+            </tr>
+            <tr>
+                <td><code>&lt;public&gt;</code></td>
+                <td>0 (self-closing)</td>
+                <td>
+                    Publicizes a variable, making it available when this file is imported.<br>
+                    Variables without <code>&lt;public&gt;</code> are private.
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>How It Works</h2>
+
+    <h3>1. Private by Default</h3>
+    <text>
+        Any variable defined without a <code>&lt;public&gt;</code> tag is <strong>private</strong> to the file.<br>
+        It cannot be accessed from other files, even if they import this file.
+    </text>
+
+    <div class="code">
+&lt;!-- file: private.xee --&gt;
+&lt;assign id="secret"&gt;
+    &lt;str&gt;This is private&lt;/str&gt;
+&lt;/assign&gt;
+&lt;!-- No public tag → secret is private --&gt;
+    </div>
+
+    <h3>2. Making Variables Public</h3>
+    <text>
+        Use the <code>&lt;public&gt;</code> tag to expose a variable.<br> The tag must reference the variable by its <code>id</code>.
+    </text>
+
+    <div class="code">
+&lt;!-- file: public.xee --&gt;
+&lt;assign id="config"&gt;
+    &lt;dict&gt;
+        &lt;pair&gt;&lt;str&gt;theme&lt;/str&gt;&lt;str&gt;dark&lt;/str&gt;&lt;/pair&gt;
+        &lt;pair&gt;&lt;str&gt;language&lt;/str&gt;&lt;str&gt;en&lt;/str&gt;&lt;/pair&gt;
+    &lt;/dict&gt;
+&lt;/assign&gt;
+&lt;public id="config"/&gt;  &lt;!-- config is now public --&gt;
+    </div>
+
+    <h3>3. Importing Files</h3>
+    <text>
+        Use <code>&lt;import&gt;</code> to load variables from other files.<br>
+        Only <strong>public</strong> variables are imported — private variables remain inaccessible.
+    </text>
+
+    <div class="code">
+&lt;!-- file: main.xee --&gt;
+&lt;import id="public.xee"/&gt;  &lt;!-- Imports only public variables --&gt;
+
+&lt;call id="println"&gt;
+    &lt;access id="config"/&gt;  &lt;!-- config is available because it was public --&gt;
+&lt;/call&gt;
+    </div>
+
+    <h3>4. Built-in Libraries</h3>
+    <text>
+        Built-in libraries are imported with the <code>!</code> prefix.<br>
+        They contain public variables and functions that become available after import.
+    </text>
+
+    <div class="code">
+&lt;import id="!std"/&gt;   &lt;!-- Standard library --&gt;
+&lt;import id="!math"/&gt;  &lt;!-- Math library --&gt;
+&lt;import id="!rand"/&gt;  &lt;!-- Random library --&gt;
+&lt;import id="!io"/&gt;    &lt;!-- I/O library --&gt;
+&lt;import id="!crypto"/&gt; &lt;!-- Crypto library --&gt;
+    </div>
+
+    <h2>Functions as Public Variables</h2>
+
+    <text>
+        Functions are also variables in XEE. <br> They can be made public or kept private,
+        just like any other variable.
+    </text>
+
+    <div class="code">
+&lt;!-- file: math-utils.xee --&gt;
+
+&lt;!-- Private function (only usable inside this file) --&gt;
+&lt;func id="internal_helper"&gt;
+    &lt;args&gt;&lt;arg id="x"/&gt;&lt;/args&gt;
+    &lt;block&gt;
+        &lt;mul&gt;&lt;access id="x"/&gt;&lt;int&gt;2&lt;/int&gt;&lt;/mul&gt;
+    &lt;/block&gt;
+&lt;/func&gt;
+&lt;!-- No public → private --&gt;
+
+&lt;!-- Public function (usable after import) --&gt;
+&lt;func id="double"&gt;
+    &lt;args&gt;&lt;arg id="x"/&gt;&lt;/args&gt;
+    &lt;block&gt;
+        &lt;call id="internal_helper"&gt;
+            &lt;access id="x"/&gt;
+        &lt;/call&gt;
+    &lt;/block&gt;
+&lt;/func&gt;
+&lt;public id="double"/&gt;  &lt;!-- double is public --&gt;
+    </div>
+
+    <div class="code">
+&lt;!-- file: main.xee --&gt;
+&lt;import id="math-utils.xee"/&gt;
+
+&lt;assign id="result"&gt;
+    &lt;call id="double"&gt;
+        &lt;int&gt;5&lt;/int&gt;
+    &lt;/call&gt;
+&lt;/assign&gt;
+&lt;!-- result = 10 --&gt;
+    </div>
+
+    <h2>No Namespaces</h2>
+
+    <text>
+        XEE does not have namespaces. When you import a file, all public variables are added <br>
+        directly to the current scope. This means you must be careful with name collisions.
+    </text>
+
+    <div class="note note-warning">
+        <strong>Warning:</strong> If two imported files define public variables with the same name,<br>
+        the later import will overwrite the earlier one.
+    </div>
+
+    <div class="code">
+&lt;!-- ❌ Name collision --&gt;
+&lt;import id="file1.xee"/&gt;  &lt;!-- defines public variable "config" --&gt;
+&lt;import id="file2.xee"/&gt;  &lt;!-- also defines public variable "config" → overwrites --&gt;
+
+&lt;!-- ✅ Avoid name collisions by using unique names --&gt;
+&lt;!-- file1.xee defines "file1_config" --&gt;
+&lt;!-- file2.xee defines "file2_config" --&gt;
+    </div>
+
+    <h2>Best Practices</h2>
+
+    <ul>
+        <li><strong>Keep variables private</strong> unless they need to be shared</li>
+        <li><strong>Use unique names</strong> for public variables to avoid collisions</li>
+        <li><strong>Group related functions</strong> in a single file and publicize only the ones needed</li>
+        <li><strong>Import only what you need</strong> — but since there are no namespaces, you import everything public</li>
+        <li><strong>Functions are variables</strong> — publicize them if they should be callable from other files</li>
+    </ul>
+
+    <div class="note">
+        <strong>Note:</strong> Since functions are variables, you can: <br> pass them around.<br>
+        assign them to other variables <br> create anonymous functions.<br>
+        This makes XEE a functional language in this regard.
+    </div>
+
+</div>
+
+<div id="footer-placeholder"></div>
+
+</body>
+</html>
